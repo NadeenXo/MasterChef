@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MasterChef</string>
+    <string name="meal_name">Meal Name</string>
+    <string name="login_msg">Login</string>
+    <string name="already_have_account_msg">Already have account?</string>
+    <string name="continue_with_twitter_action">Continue with Twitter</string>
+    <string name="continue_with_facebook_action">Continue with Facebook</string>
+    <string name="continue_with_google_action">Continue with Google</string>
+    <string name="or_use_social_sign_up_action">or use social sign up</string>
+    <string name="sign_up_with_email_action">Sign up with email</string>
+    <string name="skip_action">Skip</string>
+</resources>

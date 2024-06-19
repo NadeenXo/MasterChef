@@ -1,0 +1,40 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MasterChef" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.MasterChef" parent="Base.Theme.MasterChef" />
+
+
+    <!--    &lt;!&ndash; Base application theme. &ndash;&gt;-->
+    <!--    <style name="Base.Theme.KlivvrCommunity" parent="Theme.Material3.DayNight.NoActionBar">-->
+    <!--        &lt;!&ndash; Customize your light theme here. &ndash;&gt;-->
+    <!--    </style>-->
+
+    <!--    <style name="Theme.KlivvrCommunity" parent="Base.Theme.KlivvrCommunity">-->
+    <!--        <item name="android:navigationBarColor">@android:color/transparent</item>-->
+    <!--        <item name="android:statusBarColor">@android:color/white</item>-->
+    <!--        <item name="android:windowLightStatusBar">true</item>-->
+    <!--    </style>-->
+
+    <!--    &lt;!&ndash;    style of the starter activity&ndash;&gt;-->
+    <!--    <style name="Theme.KlivvrCommunity.SplashScreen" parent="Theme.SplashScreen">-->
+    <!--        <item name="windowSplashScreenBackground">@color/klivvr_base_color</item>-->
+    <!--        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_splashscreen</item>-->
+    <!--        <item name="postSplashScreenTheme">@style/Base.Theme.KlivvrCommunity</item>-->
+
+    <!--    </style>-->
+    <!--    &lt;!&ndash;    style of the OnBoarding activity&ndash;&gt;-->
+    <!--    <style name="Theme.KlivvrCommunity.TransparentStatusBar" parent="Theme.KlivvrCommunity">-->
+    <!--        <item name="android:navigationBarColor">@android:color/transparent</item>-->
+    <!--        <item name="android:statusBarColor">@android:color/transparent</item>-->
+    <!--        <item name="android:windowLightStatusBar">false</item>-->
+
+    <!--    </style>-->
+
+    <!--    <style name="Button.Gradiant" parent="Widget.Material3.Button">-->
+    <!--        <item name="android:background">@drawable/shape_gradiant_background</item>-->
+    <!--    </style>-->
+</resources>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple"
+    tools:context=".onboarding.OnBoardingActivity">
+
+    <ImageView
+        android:id="@+id/iv_onboarding"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_onboarding" />
+
+    <ImageView
+        android:id="@+id/iv_gradiant_onboarding"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/shape_gradiant_background" />
+
+    <TextView
+        android:id="@+id/tv_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/skip_action"
+        android:textColor="@color/white"
+        android:background="@android:color/transparent"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_signup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        android:background="@drawable/shape_black_radius_corners"
+        android:padding="8dp"
+        android:text="@string/sign_up_with_email_action"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_onboarding" />
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="@id/btn_signup"
+        app:layout_constraintStart_toStartOf="@+id/btn_signup"
+        app:layout_constraintTop_toBottomOf="@id/btn_signup" />
+
+    <TextView
+        android:id="@+id/tv_social_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/purple"
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp"
+        android:text="@string/or_use_social_sign_up_action"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/view_line"
+        app:layout_constraintEnd_toEndOf="@+id/view_line"
+        app:layout_constraintStart_toStartOf="@+id/view_line"
+        app:layout_constraintTop_toTopOf="@id/view_line" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_google"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shape_white_radius_corners"
+        android:drawableStart="@drawable/ic_google"
+        android:padding="8dp"
+        android:text="@string/continue_with_google_action"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/view_line"
+        app:layout_constraintStart_toStartOf="@+id/view_line"
+        app:layout_constraintTop_toBottomOf="@+id/tv_social_signup"
+        app:layout_constraintWidth_toWidthOf="@+id/btn_signup" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_facebook"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shape_white_radius_corners"
+        android:drawableStart="@drawable/ic_facebook"
+        android:padding="8dp"
+        android:text="@string/continue_with_facebook_action"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/btn_google"
+        app:layout_constraintStart_toStartOf="@+id/btn_google"
+        app:layout_constraintTop_toBottomOf="@+id/btn_google"
+        app:layout_constraintWidth_toWidthOf="@+id/btn_signup" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_twitter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shape_white_radius_corners"
+        android:drawableStart="@drawable/ic_twitter"
+        android:padding="8dp"
+        android:text="@string/continue_with_twitter_action"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/btn_facebook"
+        app:layout_constraintStart_toStartOf="@+id/btn_facebook"
+        app:layout_constraintTop_toBottomOf="@+id/btn_facebook"
+        app:layout_constraintWidth_toWidthOf="@+id/btn_signup" />
+
+    <TextView
+        android:id="@+id/tv_alredy"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/already_have_account_msg"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_login"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/btn_twitter"
+        app:layout_constraintTop_toBottomOf="@+id/btn_twitter" />
+
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:clickable="true"
+        android:text="@string/login_msg"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_alredy"
+        app:layout_constraintEnd_toEndOf="@+id/btn_twitter"
+        app:layout_constraintStart_toEndOf="@+id/tv_alredy"
+        app:layout_constraintTop_toTopOf="@+id/tv_alredy" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
