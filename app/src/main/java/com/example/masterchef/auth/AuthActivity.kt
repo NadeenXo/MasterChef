@@ -1,9 +1,10 @@
-package com.example.masterchef.onboarding
+package com.example.masterchef.auth
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import com.example.masterchef.R
+import com.example.masterchef.onboarding.OnBoardingActivity
 
 class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

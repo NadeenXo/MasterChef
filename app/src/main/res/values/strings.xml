@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">MasterChef</string>
+    <!--    login - signup - onboarding-->
+    <string name="app_name">Master Chef</string>
     <string name="meal_name">Meal Name</string>
     <string name="login_msg">Login</string>
     <string name="already_have_account_msg">Already have account?</string>
@@ -9,4 +10,7 @@
     <string name="or_use_social_sign_up_action">or use social sign up</string>
     <string name="sign_up_with_email_action">Sign up with email</string>
     <string name="skip_action">Skip</string>
+    <string name="cancel_msg">Cancel</string>
+    <!--    &#45;&#45;-->
+
 </resources>

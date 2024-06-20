@@ -7,30 +7,31 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_progress"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_progress_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MasterChef"
         tools:targetApi="31">
         <activity
-            android:name=".onboarding.AuthActivity"
-            android:exported="true">
+            android:name=".auth.AuthActivity"
+            android:exported="false" />
+        <activity
+            android:name=".onboarding.OnBoardingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MasterChef.onBoarding" />
+        <activity
+            android:name=".onboarding.SplashScreenActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MasterChef.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".onboarding.OnBoardingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".onboarding.SplashScreenActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="false" />
     </application>
 
 </manifest>

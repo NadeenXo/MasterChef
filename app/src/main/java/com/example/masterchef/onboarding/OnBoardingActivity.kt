@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.view.WindowCompat
 import com.example.masterchef.R
+import com.example.masterchef.auth.AuthActivity
 
 class OnBoardingActivity : AppCompatActivity() {
     companion object Constants {
@@ -18,6 +20,11 @@ class OnBoardingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_on_boarding)
         login = findViewById(R.id.tv_login)
+        signup = findViewById(R.id.btn_signup_onboarding)
+
+        //to make the edge to edge screen
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         login.setOnClickListener {
             startLoginFragment()
         }
