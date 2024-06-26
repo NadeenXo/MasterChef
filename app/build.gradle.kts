@@ -59,6 +59,8 @@ dependencies {
 
     //splash screen
     implementation("androidx.core:core-splashscreen:1.0.0")
+    implementation("com.airbnb.android:lottie:6.4.1")
+
 
     // Navigation Components
     implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")

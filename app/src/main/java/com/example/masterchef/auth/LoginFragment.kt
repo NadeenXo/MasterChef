@@ -1,6 +1,8 @@
 package com.example.masterchef.auth
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Patterns
 import androidx.fragment.app.Fragment
@@ -18,6 +20,8 @@ class LoginFragment : Fragment() {
 
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
+    private lateinit var sharedPref: SharedPreferences
+
 
     //check whether all the text fields are filled or not.
     private var isAllFieldsChecked = false
@@ -34,10 +38,18 @@ class LoginFragment : Fragment() {
         etEmail = view.findViewById(R.id.et_email_login)
         etPassword = view.findViewById(R.id.et_password_login)
 
+        sharedPref = activity?.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)!!
+
         bLogin.setOnClickListener {
             isAllFieldsChecked = checkAllFields()
             if (isAllFieldsChecked) {
+
+                // loggedin
                 startActivity(Intent(activity, MainActivity::class.java))
+                with(sharedPref.edit()) {
+                    putBoolean(getString(R.string.logged), true)
+                    apply()
+                }
                 // findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
 
             }

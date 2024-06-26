@@ -11,6 +11,9 @@
     <string name="sign_up_with_email_action">Sign up with email</string>
     <string name="skip_action">Skip</string>
     <string name="cancel_msg">Cancel</string>
-    <!--    &#45;&#45;-->
+    <!--  shared prefs   -->
+    <string name="preference_file_key">com.example.masterchef.onboarding.loggedin</string>
+    <string name="logged">logged</string>
+    <!--    &#45;&#45;   -->
 
 </resources>

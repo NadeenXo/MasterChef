@@ -1,6 +1,8 @@
 package com.example.masterchef.onboarding
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -15,15 +17,21 @@ class OnBoardingActivity : AppCompatActivity() {
     }
 
     lateinit var login: TextView
+    lateinit var skip: TextView
     lateinit var signup: Button
+    lateinit var sharedPref: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_on_boarding)
         login = findViewById(R.id.tv_login)
+        skip = findViewById(R.id.tv_skip)
         signup = findViewById(R.id.btn_signup_onboarding)
 
         //to make the edge to edge screen
         WindowCompat.setDecorFitsSystemWindows(window, false)
+        sharedPref =
+            this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
 
         login.setOnClickListener {
             startLoginFragment()
@@ -31,6 +39,12 @@ class OnBoardingActivity : AppCompatActivity() {
 
         signup.setOnClickListener {
             startSignupFragment()
+        }
+        skip.setOnClickListener {
+            with(sharedPref.edit()) {
+                putBoolean(getString(R.string.logged), false)
+                apply()
+            }
         }
     }
 
