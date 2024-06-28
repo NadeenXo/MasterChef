@@ -3,9 +3,10 @@ package com.example.masterchef.dashboard
 import com.google.gson.annotations.SerializedName
 
 
-data class MealsModel(
-    @SerializedName("meals") var meals: ArrayList<Meals> = arrayListOf()
+data class MealsResponse(
+    @SerializedName("meals") val meals: List<Meals>
 )
+
 
 data class Meals(
     @SerializedName("idMeal") var idMeal: String? = null,

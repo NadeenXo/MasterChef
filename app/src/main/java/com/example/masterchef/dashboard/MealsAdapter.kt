@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.masterchef.R
 
-class MealsAdapter(val data: ArrayList<MealsCategories>) :
+class MealsAdapter(val data: List<MealsCategories>) :
     RecyclerView.Adapter<MealsAdapter.MyViewHolder>() {
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // val img: ImageView = itemView.findViewById(R.id.imageView)
@@ -27,8 +27,6 @@ class MealsAdapter(val data: ArrayList<MealsCategories>) :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-
-        //Glide.with(holder.itemView.context).load(data[position].meals).into(holder.img)
 
         holder.name.text = data[position].strCategory
 

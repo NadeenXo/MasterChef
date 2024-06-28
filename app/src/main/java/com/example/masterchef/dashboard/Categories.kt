@@ -2,8 +2,8 @@ package com.example.masterchef.dashboard
 
 import com.google.gson.annotations.SerializedName
 
-data class Categories(
-    @SerializedName("meals") var meals: ArrayList<MealsCategories> = arrayListOf()
+data class CategoriesResponse(
+    @SerializedName("meals") var meals: List<MealsCategories>
 )
 
 data class MealsCategories(
