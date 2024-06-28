@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object APIClient {
-    const val baseUrl = "https://www.themealdb.com/api/json/v1/1/"
+    private const val BASE_URL = "https://www.themealdb.com/api/json/v1/1/"
 
     //    val is initialized only the first time the fun is called
     //    and the same instance is used every time you try to access the fun
@@ -13,7 +13,7 @@ object APIClient {
     }
 
     private val retrofitInstance: ApiService by lazy {
-        Retrofit.Builder().baseUrl(baseUrl)
+        Retrofit.Builder().baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build().create(ApiService::class.java)
     }

@@ -1,7 +1,7 @@
 package com.example.masterchef.network
 
-import com.example.masterchef.Categories
-import com.example.masterchef.MealsModel
+import com.example.masterchef.dashboard.Categories
+import com.example.masterchef.dashboard.MealsModel
 import retrofit2.Call
 import retrofit2.http.GET
 

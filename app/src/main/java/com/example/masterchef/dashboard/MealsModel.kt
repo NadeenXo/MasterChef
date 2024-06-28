@@ -1,6 +1,11 @@
-package com.example.masterchef
+package com.example.masterchef.dashboard
 
 import com.google.gson.annotations.SerializedName
+
+
+data class MealsModel(
+    @SerializedName("meals") var meals: ArrayList<Meals> = arrayListOf()
+)
 
 data class Meals(
     @SerializedName("idMeal") var idMeal: String? = null,

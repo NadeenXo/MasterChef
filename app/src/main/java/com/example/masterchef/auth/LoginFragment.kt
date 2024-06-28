@@ -11,8 +11,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import com.example.masterchef.MainActivity
+import androidx.core.content.edit
 import com.example.masterchef.R
+import com.example.masterchef.dashboard.MainActivity
 
 class LoginFragment : Fragment() {
     private lateinit var bCancel: Button
@@ -38,7 +39,8 @@ class LoginFragment : Fragment() {
         etEmail = view.findViewById(R.id.et_email_login)
         etPassword = view.findViewById(R.id.et_password_login)
 
-        sharedPref = activity?.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)!!
+        sharedPref =
+            activity?.getSharedPreferences(LoginManager.PREFERENCE_FILE_KEY, Context.MODE_PRIVATE)!!
 
         bLogin.setOnClickListener {
             isAllFieldsChecked = checkAllFields()
@@ -46,9 +48,10 @@ class LoginFragment : Fragment() {
 
                 // loggedin
                 startActivity(Intent(activity, MainActivity::class.java))
-                with(sharedPref.edit()) {
-                    putBoolean(getString(R.string.logged), true)
-                    apply()
+                sharedPref.edit {
+                    putBoolean(LoginManager.PREFERENCE_IS_LOGGED, true)
+                    putString(LoginManager.PREFERENCE_EMAIL, etEmail.text.trim().toString())
+
                 }
                 // findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
 

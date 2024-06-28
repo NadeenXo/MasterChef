@@ -7,9 +7,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.content.edit
 import androidx.core.view.WindowCompat
 import com.example.masterchef.R
 import com.example.masterchef.auth.AuthActivity
+import com.example.masterchef.auth.LoginManager
 
 class OnBoardingActivity : AppCompatActivity() {
     companion object Constants {
@@ -31,7 +33,7 @@ class OnBoardingActivity : AppCompatActivity() {
         //to make the edge to edge screen
         WindowCompat.setDecorFitsSystemWindows(window, false)
         sharedPref =
-            this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+            this.getSharedPreferences(LoginManager.PREFERENCE_FILE_KEY, Context.MODE_PRIVATE)
 
         login.setOnClickListener {
             startLoginFragment()
@@ -41,9 +43,8 @@ class OnBoardingActivity : AppCompatActivity() {
             startSignupFragment()
         }
         skip.setOnClickListener {
-            with(sharedPref.edit()) {
-                putBoolean(getString(R.string.logged), false)
-                apply()
+            sharedPref.edit {
+                putBoolean(LoginManager.PREFERENCE_IS_LOGGED, false)
             }
         }
     }
@@ -60,6 +61,7 @@ class OnBoardingActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    //todo: check this
     override fun onBackPressed() {
         super.onBackPressed()
         finishAffinity()

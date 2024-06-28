@@ -3,21 +3,21 @@
     <item
         android:id="@+id/home"
         android:enabled="true"
-        android:icon="@drawable/baseline_home_24"
-        android:title="For You"/>
+        android:icon="@drawable/ic_home"
+        android:title="@string/for_you_msg"/>
     <item
         android:id="@+id/search"
         android:enabled="true"
-        android:icon="@drawable/baseline_auto_fix_normal_24"
-        android:title="Search"/>
+        android:icon="@drawable/ic_search"
+        android:title="@string/search_msg"/>
     <item
         android:id="@+id/add"
         android:enabled="true"
-        android:icon="@drawable/baseline_add_24"
-        android:title="Add"/>
+        android:icon="@drawable/ic_add"
+        android:title="@string/add_msg"/>
     <item
         android:id="@+id/calender"
         android:enabled="true"
-        android:icon="@drawable/baseline_access_time_24"
-        android:title="Calender"/>
+        android:icon="@drawable/ic_calendar"
+        android:title="@string/calender_msg"/>
 </menu>

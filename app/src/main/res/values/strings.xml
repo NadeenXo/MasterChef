@@ -11,9 +11,15 @@
     <string name="sign_up_with_email_action">Sign up with email</string>
     <string name="skip_action">Skip</string>
     <string name="cancel_msg">Cancel</string>
+    <!--    menu-->
+    <string name="for_you_msg">FOR YOU</string>
+    <string name="search_msg">SEARCH</string>
+    <string name="add_msg">ADD</string>
+    <string name="calender_msg">CALENDER</string>
+
     <!--  shared prefs   -->
-    <string name="preference_file_key">com.example.masterchef.onboarding.loggedin</string>
-    <string name="logged">logged</string>
+    <!--    <string name="preference_file_key">com.example.masterchef.onboarding.loggedin</string>-->
+    <!--    <string name="logged">com.example.masterchef.onboarding.logged</string>-->
     <!--    &#45;&#45;   -->
 
 </resources>
