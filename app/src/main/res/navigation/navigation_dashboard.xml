@@ -28,4 +28,9 @@
         android:name="com.example.masterchef.dashboard.calender.CalenderFragment"
         android:label="Calender"
         tools:layout="@layout/fragment_calender" />
+    <fragment
+        android:id="@+id/favouriteFragment"
+        android:name="com.example.masterchef.dashboard.favorite.FavouriteFragment"
+        android:label="Favourite"
+        tools:layout="@layout/fragment_favourite" />
 </navigation>

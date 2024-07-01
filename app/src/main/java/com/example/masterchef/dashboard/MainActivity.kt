@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.masterchef.R
 import com.example.masterchef.dashboard.add.AddFragment
 import com.example.masterchef.dashboard.calender.CalenderFragment
+import com.example.masterchef.dashboard.favorite.FavouriteFragment
 import com.example.masterchef.dashboard.home.HomeFragment
 import com.example.masterchef.dashboard.search.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -28,16 +29,18 @@ class MainActivity : AppCompatActivity() {
         // Set listener for BottomNavigationView
         navView.setOnItemSelectedListener { item ->
             val fragment = when (item.itemId) {
-                R.id.homeFragment -> HomeFragment()
-                R.id.searchFragment -> SearchFragment()
-                R.id.addFragment -> AddFragment()
-                R.id.calenderFragment -> CalenderFragment()
-                else -> HomeFragment() // Default to HomeFragment
+                R.id.home -> HomeFragment()
+                R.id.search -> SearchFragment()
+                R.id.fav -> FavouriteFragment()
+                R.id.add -> AddFragment()
+                R.id.calender -> CalenderFragment()
+                else -> HomeFragment()
             }
             replaceFragment(fragment)
             true
         }
     }
+
 
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager

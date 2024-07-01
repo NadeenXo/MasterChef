@@ -16,10 +16,10 @@
     <string name="search_msg">SEARCH</string>
     <string name="add_msg">ADD</string>
     <string name="calender_msg">CALENDER</string>
+    <string name="favourite_msg">Favourite</string>
 
     <!--  shared prefs   -->
     <!--    <string name="preference_file_key">com.example.masterchef.onboarding.loggedin</string>-->
     <!--    <string name="logged">com.example.masterchef.onboarding.logged</string>-->
     <!--    &#45;&#45;   -->
-
 </resources>

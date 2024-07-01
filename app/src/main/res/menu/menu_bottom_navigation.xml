@@ -4,20 +4,26 @@
         android:id="@+id/home"
         android:enabled="true"
         android:icon="@drawable/ic_home"
-        android:title="@string/for_you_msg"/>
+        android:title="@string/for_you_msg" />
     <item
         android:id="@+id/search"
         android:enabled="true"
         android:icon="@drawable/ic_search"
-        android:title="@string/search_msg"/>
+        android:title="@string/search_msg" />
+    <item
+        android:id="@+id/fav"
+        android:enabled="true"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/favourite_msg" />
     <item
         android:id="@+id/add"
         android:enabled="true"
         android:icon="@drawable/ic_add"
-        android:title="@string/add_msg"/>
+        android:title="@string/add_msg" />
+
     <item
         android:id="@+id/calender"
         android:enabled="true"
         android:icon="@drawable/ic_calendar"
-        android:title="@string/calender_msg"/>
+        android:title="@string/calender_msg" />
 </menu>

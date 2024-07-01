@@ -1,4 +1,4 @@
-package com.example.masterchef.dashboard.search
+package com.example.masterchef.dashboard.favorite
 
 import android.os.Bundle
 import android.util.Log
@@ -10,13 +10,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.masterchef.R
-import com.example.masterchef.network.APIClient
+import com.example.masterchef.dto.FavDataBase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-
-class SearchFragment : Fragment() {
+class FavouriteFragment : Fragment() {
     lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
@@ -24,24 +23,19 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_search, container, false)
+        val view = inflater.inflate(R.layout.fragment_favourite, container, false)
+        recyclerView = view.findViewById(R.id.rv_fav)
 
-        recyclerView = view.findViewById(R.id.rv_search)
-
-        val service = APIClient.getInstance()
+        val favDao = FavDataBase.getInstance(requireContext()).favDao()
 
         lifecycleScope.launch(Dispatchers.IO) {
             try {
-                val mealsResponse = service.getRandomMeals()
-                if (mealsResponse.isSuccessful) {
-                    val categories = mealsResponse.body()?.meals
-                    withContext(Dispatchers.Main) {
-                        recyclerView.layoutManager = LinearLayoutManager(requireActivity())
-                        recyclerView.adapter = categories?.let { RandomMealsAdapter(it) }
-                    }
-                } else {
-                    Log.e("HomeFragment", "Error: ${mealsResponse.code()}")
+                val favMeals = favDao.getFavs()
+                withContext(Dispatchers.Main) {
+                    recyclerView.layoutManager = LinearLayoutManager(requireActivity())
+                    recyclerView.adapter = FavAdapter(favMeals)
                 }
+
             } catch (e: Exception) {
                 Log.e("HomeFragment", "Exception: ${e.message}")
             }

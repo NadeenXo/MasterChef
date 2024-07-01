@@ -2,6 +2,7 @@ package com.example.masterchef.auth
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.addCallback
 import androidx.navigation.fragment.NavHostFragment
 import com.example.masterchef.R
 import com.example.masterchef.onboarding.OnBoardingActivity
@@ -23,5 +24,15 @@ class AuthActivity : AppCompatActivity() {
         val navGraph = navController.navInflater.inflate(R.navigation.navigation_auth)
         navGraph.setStartDestination(initialFragmentId)
         navController.graph = navGraph
+
+        onBackPressedDispatcher.addCallback(this@AuthActivity) {
+            finishAffinity()
+        }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
+    }
+
 }
