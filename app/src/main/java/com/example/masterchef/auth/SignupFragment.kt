@@ -58,8 +58,7 @@ class SignupFragment : Fragment() {
         ).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 // Sign in success, update UI with the signed-in user's information
-                // val user = auth.currentUser
-                // updateUI(user)
+
                 Toast.makeText(
                     context,
                     "Signup Successfully",
@@ -77,7 +76,6 @@ class SignupFragment : Fragment() {
                     "Authentication failed.",
                     Toast.LENGTH_SHORT,
                 ).show()
-                //  updateUI(null)
             }
         }
     }
