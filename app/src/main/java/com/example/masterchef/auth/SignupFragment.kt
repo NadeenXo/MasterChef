@@ -8,19 +8,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.masterchef.R
+import com.google.firebase.auth.FirebaseAuth
 
 class SignupFragment : Fragment() {
     private lateinit var bCancel: Button
     private lateinit var bSignup: Button
-
     private lateinit var etEmail: EditText
     private lateinit var etPassword: EditText
     private lateinit var etConfirmPassword: EditText
 
     //check whether all the text fields are filled or not.
     private var isAllFieldsChecked = false
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,26 +32,54 @@ class SignupFragment : Fragment() {
 
         bSignup = view.findViewById(R.id.btn_signup)
         bCancel = view.findViewById(R.id.btn_cancel_signup)
-
         etEmail = view.findViewById(R.id.et_email_signup)
         etPassword = view.findViewById(R.id.et_password_signup)
         etConfirmPassword = view.findViewById(R.id.et_confirm_password_signup)
 
+        auth = FirebaseAuth.getInstance()
+
         bSignup.setOnClickListener {
             isAllFieldsChecked = checkAllFields()
             if (isAllFieldsChecked) {
-//                val i = Intent(activity, LoginFragment::class.java)
-//                startActivity(i)
-                findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
-
+                // if all fields is true signup
+                signUp()
             }
         }
-
         bCancel.setOnClickListener {
             requireActivity().finish()
         }
-
         return view
+    }
+
+    private fun signUp() {
+        auth.createUserWithEmailAndPassword(
+            etEmail.text.toString(),
+            etPassword.text.toString()
+        ).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                // Sign in success, update UI with the signed-in user's information
+                // val user = auth.currentUser
+                // updateUI(user)
+                Toast.makeText(
+                    context,
+                    "Signup Successfully",
+                    Toast.LENGTH_SHORT,
+                ).show()
+
+                // Sign out the user to require login
+                auth.signOut()
+                //go to login
+                findNavController().navigate(R.id.action_signupFragment_to_loginFragment)
+            } else {
+                // If sign in fails, display a message to the user.
+                Toast.makeText(
+                    context,
+                    "Authentication failed.",
+                    Toast.LENGTH_SHORT,
+                ).show()
+                //  updateUI(null)
+            }
+        }
     }
 
     // Function which checks all the text fields
