@@ -17,6 +17,7 @@
     <string name="add_msg">ADD</string>
     <string name="calender_msg">CALENDER</string>
     <string name="favourite_msg">Favourite</string>
+    <string name="default_web_client_id">141179480749-blafj5af4qoomh8murtudriouv0olj7f.apps.googleusercontent.com</string>
 
     <!--  shared prefs   -->
     <!--    <string name="preference_file_key">com.example.masterchef.onboarding.loggedin</string>-->

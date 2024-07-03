@@ -17,7 +17,7 @@ class MealsAdapter(val data: List<MealsCategories>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_meals, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_category, parent, false)
         )
 
     }
