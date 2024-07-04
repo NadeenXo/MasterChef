@@ -32,7 +32,7 @@ class HomeFragment : Fragment() {
 
         name = view.findViewById(R.id.tv_meal_name)
         img = view.findViewById(R.id.iv_meal)
-        recyclerView = view.findViewById(R.id.rv)
+        recyclerView = view.findViewById(R.id.rv_home)
 
 
         val service = APIClient.getInstance()

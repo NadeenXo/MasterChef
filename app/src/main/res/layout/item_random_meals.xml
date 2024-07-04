@@ -3,25 +3,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:background="@drawable/shape_card"
+    android:padding="8dp">
 
-    <TextView
-        android:id="@+id/id_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+    <ImageView
+        android:id="@+id/iv_meal_fav"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="2dp"
+        android:contentDescription="@string/meal_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/meal_name" />
+        tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/str_tv"
-        android:layout_width="wrap_content"
+        android:id="@+id/tv_meal_name_fav"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/id_tv"
-        app:layout_constraintStart_toStartOf="@+id/id_tv"
-        app:layout_constraintTop_toBottomOf="@+id/id_tv"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="2dp"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/iv_meal_fav"
+        app:layout_constraintStart_toStartOf="@+id/iv_meal_fav"
+        app:layout_constraintTop_toBottomOf="@+id/iv_meal_fav"
         tools:text="@string/meal_name" />
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/id_tv"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="8dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        tools:text="@string/meal_name" />-->
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/str_tv"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="16dp"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/id_tv"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/id_tv"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/id_tv"-->
+    <!--        tools:text="@string/meal_name" />-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>
