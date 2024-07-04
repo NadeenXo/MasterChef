@@ -30,7 +30,7 @@ class FavouriteFragment : Fragment() {
 
         lifecycleScope.launch(Dispatchers.IO) {
             try {
-                val favMeals = favDao.getFavs()
+                val favMeals = favDao.getAll()
                 withContext(Dispatchers.Main) {
                     recyclerView.layoutManager = LinearLayoutManager(requireActivity())
                     recyclerView.adapter = FavAdapter(favMeals)

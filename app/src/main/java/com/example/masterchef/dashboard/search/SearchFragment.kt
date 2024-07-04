@@ -29,7 +29,7 @@ class SearchFragment : Fragment() {
         recyclerView = view.findViewById(R.id.rv_search)
 
         val service = APIClient.getInstance()
-
+//todo: search
         lifecycleScope.launch(Dispatchers.IO) {
             try {
                 val mealsResponse = service.getRandomMeals()

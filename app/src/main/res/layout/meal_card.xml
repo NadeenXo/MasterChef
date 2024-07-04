@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
     android:background="@drawable/shape_card"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:id="@+id/meal_card">
 
     <ImageView
         android:id="@+id/iv_meal"

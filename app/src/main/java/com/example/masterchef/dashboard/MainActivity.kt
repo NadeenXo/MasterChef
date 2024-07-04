@@ -19,7 +19,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         navView = findViewById(R.id.bottom_nav)
+
+        //todo: try to fix home error
+//        val navHostFragment = supportFragmentManager
+//            .findFragmentById(R.id.nav_host_fragment_dashboard) as NavHostFragment
+//        val navController = navHostFragment.navController
+//        navView.setupWithNavController(navController)
 
         // Initialize with HomeFragment if savedInstanceState is null
         if (savedInstanceState == null) {

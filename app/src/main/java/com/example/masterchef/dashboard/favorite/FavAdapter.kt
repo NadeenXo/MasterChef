@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.masterchef.R
 import com.example.masterchef.dto.FavDataBase
-import com.example.masterchef.dto.fav
+import com.example.masterchef.dto.FavouriteTable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class FavAdapter(var data: List<fav>) :
+class FavAdapter(var data: List<FavouriteTable>) :
     RecyclerView.Adapter<FavAdapter.MyViewHolder>() {
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val img: ImageView = itemView.findViewById(R.id.iv_meal_fav_item)
@@ -37,14 +37,14 @@ class FavAdapter(var data: List<fav>) :
         val favDao = FavDataBase.getInstance(holder.itemView.context).favDao()
 
         holder.name.text = data[position].strMeal
-//        holder.str.text = data[position].strMeal
-//        Glide.with(holder.itemView.context){
-//img
-//        }
+
+        //todo:edit data class
+        Glide.with(holder.itemView.context).load(data[position].strMealThumb).into(holder.img)
+        //todo: edit favDao
         holder.del.setOnClickListener {
             GlobalScope.launch {
                 favDao.delete(data[position])
-                data = favDao.getFavs()
+                data = favDao.getAll()
                 withContext(Dispatchers.Main) {
                     notifyDataSetChanged()
                 }

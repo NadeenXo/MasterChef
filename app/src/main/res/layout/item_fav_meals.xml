@@ -8,29 +8,6 @@
     android:background="@drawable/shape_card"
     android:padding="8dp">
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/id_tv"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="8dp"-->
-    <!--        android:textSize="20sp"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        tools:text="@string/meal_name" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/str_tv"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="16dp"-->
-    <!--        android:textSize="20sp"-->
-    <!--        app:layout_constraintEnd_toEndOf="@+id/id_tv"-->
-    <!--        app:layout_constraintStart_toStartOf="@+id/id_tv"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/id_tv"-->
-    <!--        tools:text="@string/meal_name" />-->
-
-
     <ImageView
         android:id="@+id/iv_meal_fav_item"
         android:layout_width="100dp"

@@ -23,6 +23,7 @@ class HomeFragment : Fragment() {
     lateinit var recyclerView: RecyclerView
     lateinit var name: TextView
     lateinit var img: ImageView
+    lateinit var mealCard: View
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +34,12 @@ class HomeFragment : Fragment() {
         name = view.findViewById(R.id.tv_meal_name)
         img = view.findViewById(R.id.iv_meal)
         recyclerView = view.findViewById(R.id.rv_home)
+        mealCard = view.findViewById(R.id.meal_card_main)
 
+        //todo:error
+//        mealCard.setOnClickListener {
+//            findNavController().navigate(R.id.action_homeFragment_to_mealFragment)
+//        }
 
         val service = APIClient.getInstance()
 //        service.getMeals().enqueue(object : Callback<MealsModel?> {
