@@ -1,6 +1,6 @@
 package com.example.masterchef.dashboard.search
 
-import com.example.masterchef.dashboard.Meals
+import com.example.masterchef.dashboard.meal.Meals
 import com.google.gson.annotations.SerializedName
 
 

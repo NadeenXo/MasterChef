@@ -1,4 +1,4 @@
-package com.example.masterchef.dashboard
+package com.example.masterchef.dashboard.meal
 
 import com.google.gson.annotations.SerializedName
 
@@ -9,13 +9,13 @@ data class MealsResponse(
 
 
 data class Meals(
-    @SerializedName("idMeal") var idMeal: String? = null,
-    @SerializedName("strMeal") var strMeal: String? = null,
+    @SerializedName("idMeal") var idMeal: String,
+    @SerializedName("strMeal") var strMeal: String,
     @SerializedName("strDrinkAlternate") var strDrinkAlternate: String? = null,
     @SerializedName("strCategory") var strCategory: String? = null,
     @SerializedName("strArea") var strArea: String? = null,
     @SerializedName("strInstructions") var strInstructions: String? = null,
-    @SerializedName("strMealThumb") var strMealThumb: String? = null,
+    @SerializedName("strMealThumb") var strMealThumb: String,
     @SerializedName("strTags") var strTags: String? = null,
     @SerializedName("strYoutube") var strYoutube: String? = null,
     @SerializedName("strIngredient1") var strIngredient1: String? = null,

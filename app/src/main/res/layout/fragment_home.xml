@@ -6,15 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".dashboard.home.HomeFragment">
 
+    <TextView
+        android:id="@+id/tv_meal_of_day"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="casual"
+        android:text="Meal Of The Day"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <include
-        android:id="@+id/meal_card_main"
+        android:id="@+id/meal_card_home"
         layout="@layout/meal_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_meal_of_day" />
+
+    <TextView
+        android:id="@+id/tv_categories_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="casual"
+        android:text="Categories"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/meal_card_home" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_home"
@@ -24,7 +53,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/meal_card_main"
-        tools:listitem="@layout/item_category" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_categories_home"
+        tools:listitem="@layout/item_category"
+        android:foregroundGravity="center_horizontal"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

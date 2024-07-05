@@ -82,5 +82,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_background"
-        tools:listitem="@layout/item_random_meals" />
+        tools:listitem="@layout/item_meal" />
 </androidx.constraintlayout.widget.ConstraintLayout>

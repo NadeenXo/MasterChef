@@ -6,12 +6,15 @@ import androidx.fragment.app.Fragment
 import com.example.masterchef.R
 import com.example.masterchef.dashboard.add.AddFragment
 import com.example.masterchef.dashboard.calender.CalenderFragment
+import com.example.masterchef.dashboard.country.CountryFragment
 import com.example.masterchef.dashboard.favorite.FavouriteFragment
 import com.example.masterchef.dashboard.home.HomeFragment
+import com.example.masterchef.dashboard.meal.Communicator
+import com.example.masterchef.dashboard.meal.MealFragment
 import com.example.masterchef.dashboard.search.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Communicator {
 
     private lateinit var navView: BottomNavigationView
 
@@ -19,14 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         navView = findViewById(R.id.bottom_nav)
-
-        //todo: try to fix home error
-//        val navHostFragment = supportFragmentManager
-//            .findFragmentById(R.id.nav_host_fragment_dashboard) as NavHostFragment
-//        val navController = navHostFragment.navController
-//        navView.setupWithNavController(navController)
 
         // Initialize with HomeFragment if savedInstanceState is null
         if (savedInstanceState == null) {
@@ -37,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         navView.setOnItemSelectedListener { item ->
             val fragment = when (item.itemId) {
                 R.id.home -> HomeFragment()
-                R.id.search -> SearchFragment()
+                R.id.country -> CountryFragment()
                 R.id.fav -> FavouriteFragment()
                 R.id.add -> AddFragment()
                 R.id.calender -> CalenderFragment()
@@ -55,4 +51,10 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.nav_host_fragment_dashboard, fragment)
             .commit()
     }
+
+    override fun navigateToMealDetails(mealId: String) {
+        replaceFragment(MealFragment())
+        //send id to it
+    }
+
 }

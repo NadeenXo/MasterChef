@@ -6,10 +6,10 @@
         android:icon="@drawable/ic_home"
         android:title="@string/for_you_msg" />
     <item
-        android:id="@+id/search"
+        android:id="@+id/country"
         android:enabled="true"
-        android:icon="@drawable/ic_search"
-        android:title="@string/search_msg" />
+        android:icon="@drawable/ic_country"
+        android:title="@string/country_msg" />
     <item
         android:id="@+id/fav"
         android:enabled="true"

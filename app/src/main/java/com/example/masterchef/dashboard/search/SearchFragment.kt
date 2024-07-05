@@ -27,25 +27,34 @@ class SearchFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
 
         recyclerView = view.findViewById(R.id.rv_search)
+//todo:
+//        val service = APIClient.getInstance()
+//        if(name ==null){
+//            //show choose category to search for a meal
+//        }
+//        else{
+//            service.getMealCategories(name)
+//
+//        }
 
-        val service = APIClient.getInstance()
 //todo: search
-        lifecycleScope.launch(Dispatchers.IO) {
-            try {
-                val mealsResponse = service.getRandomMeals()
-                if (mealsResponse.isSuccessful) {
-                    val categories = mealsResponse.body()?.meals
-                    withContext(Dispatchers.Main) {
-                        recyclerView.layoutManager = LinearLayoutManager(requireActivity())
-                        recyclerView.adapter = categories?.let { RandomMealsAdapter(it) }
-                    }
-                } else {
-                    Log.e("HomeFragment", "Error: ${mealsResponse.code()}")
-                }
-            } catch (e: Exception) {
-                Log.e("HomeFragment", "Exception: ${e.message}")
-            }
-        }
+
+//        lifecycleScope.launch(Dispatchers.IO) {
+//            try {
+//                val mealsResponse = service.getRandomMeals()
+//                if (mealsResponse.isSuccessful) {
+//                    val categories = mealsResponse.body()?.meals
+//                    withContext(Dispatchers.Main) {
+//                        recyclerView.layoutManager = LinearLayoutManager(requireActivity())
+//                        recyclerView.adapter = categories?.let { RandomMealsAdapter(it) }
+//                    }
+//                } else {
+//                    Log.e("HomeFragment", "Error: ${mealsResponse.code()}")
+//                }
+//            } catch (e: Exception) {
+//                Log.e("HomeFragment", "Exception: ${e.message}")
+//            }
+//        }
         return view
     }
 }

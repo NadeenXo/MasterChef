@@ -1,25 +1,24 @@
-package com.example.masterchef.dashboard
+package com.example.masterchef.dashboard.country
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.masterchef.R
+import com.example.masterchef.dashboard.country.data.MealAreaStr
 
-class MealsAdapter(val data: List<MealsCategories>) :
-    RecyclerView.Adapter<MealsAdapter.MyViewHolder>() {
+class CountryAdapter(private val data: List<MealAreaStr>, private val onItemClicked: (String) -> Unit) :
+    RecyclerView.Adapter<CountryAdapter.MyViewHolder>() {
+
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // val img: ImageView = itemView.findViewById(R.id.imageView)
-        val name: TextView = itemView.findViewById(R.id.category_tv)
+        val name: TextView = itemView.findViewById(R.id.tv_country_name)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_category, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_country, parent, false)
         )
-
     }
 
     override fun getItemCount(): Int {
@@ -27,13 +26,11 @@ class MealsAdapter(val data: List<MealsCategories>) :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-
-        holder.name.text = data[position].strCategory
+        val country = data[position]
+        holder.name.text = country.strArea
 
         holder.itemView.setOnClickListener {
-            Toast.makeText(holder.itemView.context, holder.name.text, Toast.LENGTH_SHORT).show()
+            onItemClicked(country.strArea)
         }
     }
-
-
 }
