@@ -1,4 +1,4 @@
-package com.example.masterchef.dashboard.home.category
+package com.example.masterchef.dashboard.home.model.category
 
 data class Category(
     val idCategory: String,

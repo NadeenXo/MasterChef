@@ -11,22 +11,27 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.masterchef.R
-import com.example.masterchef.dashboard.meal.MealAdapter
+import com.example.masterchef.dashboard.home.model.category.Category
+import com.example.masterchef.dashboard.home.view.CategoriesAdapter
+import com.example.masterchef.dashboard.home.view.CategoryListener
+import com.example.masterchef.dashboard.meal.MealFragment
 import com.example.masterchef.network.APIClient
+import com.example.masterchef.network.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), CategoryListener {
+    private lateinit var categoryName: String
     lateinit var recyclerView: RecyclerView
     lateinit var name: TextView
     lateinit var img: ImageView
     lateinit var mealCard: View
+    lateinit var service: ApiService
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +49,7 @@ class HomeFragment : Fragment() {
 //            findNavController().navigate(R.id.action_homeFragment_to_mealFragment)
 //        }
 
-        val service = APIClient.getInstance()
+        service = APIClient.getInstance()
 //        service.getMeals().enqueue(object : Callback<MealsModel?> {
 //            override fun onResponse(call: Call<MealsModel?>?, response: Response<MealsModel?>?) {
 //                Log.i("Meals", "onResponse: ${response?.body()}")
@@ -90,11 +95,9 @@ class HomeFragment : Fragment() {
                     withContext(Dispatchers.Main) {
                         recyclerView.layoutManager =
                             GridLayoutManager(requireActivity(), 2, RecyclerView.VERTICAL, false)
-                        recyclerView.adapter = categories?.let {
-                            CategoriesAdapter(it) { countryName ->
-                                fetchMealsByCategories(countryName)
-                            }
-                        }
+                        recyclerView.adapter =
+                            categories?.let { CategoriesAdapter(it, this@HomeFragment) }
+//                        fetchMealsByCategories(categoryName)
 
                     }
                 } else {
@@ -105,36 +108,12 @@ class HomeFragment : Fragment() {
             }
         }
 
-//        service.getCategories().enqueue(object : Callback<Categories?> {
-//            override fun onResponse(call: Call<Categories?>?, response: Response<Categories?>?) {
-//                Log.i("Categories", "onResponse: ${response?.body()}")
-//                val categories = response?.body()?.meals
-//
-//                recyclerView.layoutManager = LinearLayoutManager(activity)
-//                recyclerView.adapter = categories?.let { CategoriesAdapter(it) }
-//            }
-//
-//            override fun onFailure(call: Call<Categories?>?, t: Throwable?) {
-//                Log.i("Categories", "onFailure: ${t?.cause}")
-//            }
-//        })
-
-//        lifecycleScope.launch(Dispatchers.IO) {
-//            val response = service.getCategories()
-//            val categories = response.body()?.meals ?: emptyList()
-//            withContext(Dispatchers.Main) {
-//                recyclerView.layoutManager = LinearLayoutManager(activity)
-//                recyclerView.adapter = CategoriesAdapter(categories)
-//            }
-//        }
-//    }
         return view
     }
 
     private fun fetchMealsByCategories(categoryName: String) {
         lifecycleScope.launch {
             try {
-                val service = APIClient.getInstance()
                 val response = service.getMealsByCategory(categoryName)
                 if (response.isSuccessful && response.body() != null) {
                     val meals = response.body()?.meals
@@ -142,7 +121,7 @@ class HomeFragment : Fragment() {
 //                    mealAdapter = MealAdapter(meals, this@CountryFragment)
 //                    mealAdapter = MealAdapter(meals)
 //                    rvMeals.adapter = mealAdapter
-                    Toast.makeText(context,"$meals",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "$meals", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
                 // Handle the error
@@ -150,4 +129,26 @@ class HomeFragment : Fragment() {
         }
     }
 
+    override fun onClick(category: Category) {
+        categoryName = category.strCategory
+        lifecycleScope.launch(Dispatchers.IO) {
+            //todo: go from home to meals
+            //val meals = service.getMealsByCategory(name)
+            fetchMealsByCategories(categoryName)
+            withContext(Dispatchers.Main) {
+                Toast.makeText(context, categoryName, Toast.LENGTH_SHORT).show()
+
+                navigateToMealFragment()
+
+            }
+        }
+
+    }
+
+    private fun navigateToMealFragment() {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_fragment_dashboard, MealFragment())
+            .addToBackStack("MealFragment")
+            .commit()
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.masterchef.dashboard.home
+package com.example.masterchef.dashboard.home.model
 
 import com.google.gson.annotations.SerializedName
 

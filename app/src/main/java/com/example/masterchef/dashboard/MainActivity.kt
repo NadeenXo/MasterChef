@@ -9,12 +9,10 @@ import com.example.masterchef.dashboard.calender.CalenderFragment
 import com.example.masterchef.dashboard.country.CountryFragment
 import com.example.masterchef.dashboard.favorite.FavouriteFragment
 import com.example.masterchef.dashboard.home.HomeFragment
-import com.example.masterchef.dashboard.meal.Communicator
 import com.example.masterchef.dashboard.meal.MealFragment
-import com.example.masterchef.dashboard.search.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity(), Communicator {
+class MainActivity : AppCompatActivity() {
 
     private lateinit var navView: BottomNavigationView
 
@@ -50,11 +48,6 @@ class MainActivity : AppCompatActivity(), Communicator {
             .beginTransaction()
             .replace(R.id.nav_host_fragment_dashboard, fragment)
             .commit()
-    }
-
-    override fun navigateToMealDetails(mealId: String) {
-        replaceFragment(MealFragment())
-        //send id to it
     }
 
 }

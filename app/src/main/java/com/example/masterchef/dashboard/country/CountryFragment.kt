@@ -6,13 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.masterchef.R
-import com.example.masterchef.dashboard.meal.Communicator
 import com.example.masterchef.dashboard.meal.MealAdapter
+import com.example.masterchef.dashboard.meal.MealFragment
 import com.example.masterchef.network.APIClient
 import kotlinx.coroutines.launch
 
@@ -82,8 +81,10 @@ class CountryFragment : Fragment()
     }
 
 
-//    override fun navigateToMealDetails(mealId: String) {
-//        // Implement navigation to MealFragment using Safe Args or another navigation method
-//        findNavController().navigate(R.id.action_countryFragment_to_mealFragment)
-//    }
+    private fun navigateToMealFragment() {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_fragment_dashboard, MealFragment())
+            .addToBackStack("MealFragment")
+            .commit()
+    }
 }

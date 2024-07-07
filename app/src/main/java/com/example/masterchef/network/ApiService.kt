@@ -1,8 +1,8 @@
 package com.example.masterchef.network
 
-import com.example.masterchef.dashboard.country.data.CountryResponse
-import com.example.masterchef.dashboard.home.CategoriesStrResponse
-import com.example.masterchef.dashboard.home.category.CategoriesResponse
+import com.example.masterchef.dashboard.country.model.CountryResponse
+import com.example.masterchef.dashboard.home.model.category.CategoriesStrResponse
+import com.example.masterchef.dashboard.home.model.category.CategoriesResponse
 import com.example.masterchef.dashboard.meal.MealsResponse
 import com.example.masterchef.dashboard.search.RandomMealsResponse
 import retrofit2.Response

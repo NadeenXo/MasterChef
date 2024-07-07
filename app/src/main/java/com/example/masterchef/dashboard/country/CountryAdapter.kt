@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.masterchef.R
-import com.example.masterchef.dashboard.country.data.MealAreaStr
+import com.example.masterchef.dashboard.country.model.MealAreaStr
 
 class CountryAdapter(private val data: List<MealAreaStr>, private val onItemClicked: (String) -> Unit) :
     RecyclerView.Adapter<CountryAdapter.MyViewHolder>() {
@@ -28,7 +28,7 @@ class CountryAdapter(private val data: List<MealAreaStr>, private val onItemClic
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val country = data[position]
         holder.name.text = country.strArea
-
+//todo:mvc
         holder.itemView.setOnClickListener {
             onItemClicked(country.strArea)
         }
