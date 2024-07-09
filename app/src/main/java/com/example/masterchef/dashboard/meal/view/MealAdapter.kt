@@ -1,5 +1,5 @@
 // MealAdapter.kt
-package com.example.masterchef.dashboard.meal
+package com.example.masterchef.dashboard.meal.view
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +10,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.masterchef.R
+import com.example.masterchef.dashboard.country.CountryFragment
+import com.example.masterchef.dashboard.meal.model.Meals
 import com.example.masterchef.dto.FavDataBase
 import com.example.masterchef.dto.FavouriteTable
 import kotlinx.coroutines.CoroutineScope
@@ -18,7 +20,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MealAdapter(private val data: List<Meals>
-//, private val communicator: Communicator
+, private val listener: MealListener
 ) : RecyclerView.Adapter<MealAdapter.MyViewHolder>() {
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -45,7 +47,7 @@ class MealAdapter(private val data: List<Meals>
         holder.name.text = meal.strMeal
         Glide.with(holder.itemView.context).load(meal.strMealThumb).into(holder.img)
 
-        // Check if the meal is favorited
+        // Check if the meal is favorite
         CoroutineScope(Dispatchers.IO).launch {
             val isFavorite = favDao.getFavById(meal.idMeal ?: "").isNotEmpty()
 
@@ -79,9 +81,9 @@ class MealAdapter(private val data: List<Meals>
                     }
                 } else {
                     val newFav = FavouriteTable(
-                        meal.idMeal ?: "",
-                        meal.strMeal ?: "",
-                        meal.strMealThumb ?: ""
+                        meal.idMeal,
+                        meal.strMeal,
+                        meal.strMealThumb
                     )
                     favDao.insert(newFav)
                     withContext(Dispatchers.Main) {
@@ -90,7 +92,7 @@ class MealAdapter(private val data: List<Meals>
                 }
 
                 withContext(Dispatchers.Main) {
-                    holder.heart.isEnabled = true // Re-enable the button after operation
+                    holder.heart.isEnabled = true
                 }
             }
         }
@@ -100,6 +102,8 @@ class MealAdapter(private val data: List<Meals>
 //            meal.idMeal.let { mealId ->
 //                communicator.navigateToMealDetails(mealId)
 //            }
+            //todo : on click meal open details
+            listener.onClick(meal.idMeal)
         }
     }
 
@@ -120,6 +124,10 @@ class MealAdapter(private val data: List<Meals>
             )
         )
     }
+}
+
+interface MealListener {
+    fun onClick(id: String)
 }
 
 

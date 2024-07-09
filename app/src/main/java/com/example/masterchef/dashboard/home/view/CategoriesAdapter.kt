@@ -43,11 +43,11 @@ class CategoriesAdapter(val data: List<Category>, private val listener: Category
 
             //filter meal by category
             //send name to the api to filter with category name
+            //todo: go from home to meals
             listener.onClick(category)
 
 
 //            GlobalScope.launch {
-//                //todo: go from home to meals
 //                val meals = service.getMealsByCategory(name)
 //                withContext(Main) {
 //                    findNavController(holder.itemView.rootView).navigate(R.id.action_homeFragment_to_searchFragment)

@@ -1,4 +1,4 @@
-package com.example.masterchef.dashboard.country
+package com.example.masterchef.dashboard.country.view
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.masterchef.R
 import com.example.masterchef.dashboard.country.model.MealAreaStr
 
-class CountryAdapter(private val data: List<MealAreaStr>, private val onItemClicked: (String) -> Unit) :
+class CountryAdapter(private val data: List<MealAreaStr>, private val listener: CountryListener) :
     RecyclerView.Adapter<CountryAdapter.MyViewHolder>() {
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -28,9 +28,12 @@ class CountryAdapter(private val data: List<MealAreaStr>, private val onItemClic
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val country = data[position]
         holder.name.text = country.strArea
-//todo:mvc
         holder.itemView.setOnClickListener {
-            onItemClicked(country.strArea)
+            listener.onClick(country)
         }
     }
+}
+
+interface CountryListener {
+    fun onClick(country: MealAreaStr)
 }

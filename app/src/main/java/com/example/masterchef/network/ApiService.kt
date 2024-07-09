@@ -1,9 +1,9 @@
 package com.example.masterchef.network
 
 import com.example.masterchef.dashboard.country.model.CountryResponse
-import com.example.masterchef.dashboard.home.model.category.CategoriesStrResponse
+import com.example.masterchef.dashboard.home.model.CategoriesStrResponse
 import com.example.masterchef.dashboard.home.model.category.CategoriesResponse
-import com.example.masterchef.dashboard.meal.MealsResponse
+import com.example.masterchef.dashboard.meal.model.MealsResponse
 import com.example.masterchef.dashboard.search.RandomMealsResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -28,11 +28,15 @@ interface ApiService {
     //filter.php?c=Seafood
     @GET("filter.php")
     suspend fun getMealsByCategory(@Query("c") category: String): Response<MealsResponse>
+
     @GET("filter.php")
     suspend fun getMealsByArea(@Query("a") area: String): Response<MealsResponse>
 
     @GET("list.php?a=list")
     suspend fun getAreas(): Response<CountryResponse>
+
+    @GET("lookup.php")
+    suspend fun getMealDetails(@Query("i") id: String): Response<MealsResponse>
 
     //Search meal by name
     //www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata

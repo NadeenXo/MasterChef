@@ -18,6 +18,7 @@ import com.example.masterchef.dashboard.home.model.category.Category
 import com.example.masterchef.dashboard.home.view.CategoriesAdapter
 import com.example.masterchef.dashboard.home.view.CategoryListener
 import com.example.masterchef.dashboard.meal.MealFragment
+import com.example.masterchef.dashboard.meal.view.MealAdapter
 import com.example.masterchef.network.APIClient
 import com.example.masterchef.network.ApiService
 import kotlinx.coroutines.Dispatchers
@@ -44,10 +45,6 @@ class HomeFragment : Fragment(), CategoryListener {
         recyclerView = view.findViewById(R.id.rv_home)
         mealCard = view.findViewById(R.id.meal_card_home)
 
-        //todo:error
-//        mealCard.setOnClickListener {
-//            findNavController().navigate(R.id.action_homeFragment_to_mealFragment)
-//        }
 
         service = APIClient.getInstance()
 //        service.getMeals().enqueue(object : Callback<MealsModel?> {
@@ -117,7 +114,7 @@ class HomeFragment : Fragment(), CategoryListener {
                 val response = service.getMealsByCategory(categoryName)
                 if (response.isSuccessful && response.body() != null) {
                     val meals = response.body()?.meals
-                    // recyclerView.layoutManager = LinearLayoutManager(context)
+//                     recyclerView.layoutManager = LinearLayoutManager(context)
 //                    mealAdapter = MealAdapter(meals, this@CountryFragment)
 //                    mealAdapter = MealAdapter(meals)
 //                    rvMeals.adapter = mealAdapter
@@ -131,21 +128,30 @@ class HomeFragment : Fragment(), CategoryListener {
 
     override fun onClick(category: Category) {
         categoryName = category.strCategory
-        lifecycleScope.launch(Dispatchers.IO) {
-            //todo: go from home to meals
-            //val meals = service.getMealsByCategory(name)
-            fetchMealsByCategories(categoryName)
-            withContext(Dispatchers.Main) {
-                Toast.makeText(context, categoryName, Toast.LENGTH_SHORT).show()
-
-                navigateToMealFragment()
-
-            }
-        }
-
+        navigateToMealFragment(categoryName)
     }
 
-    private fun navigateToMealFragment() {
+    private fun navigateToMealFragment(categoryName: String) {
+        val fragment = MealFragment.newInstance(categoryName)
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_fragment_dashboard, fragment)
+            .addToBackStack("MealFragment")
+            .commit()
+    }
+
+
+//    override fun onClick(category: Category) {
+//        categoryName = category.strCategory
+//        lifecycleScope.launch(Dispatchers.IO) {
+//          //  fetchMealsByCategories(categoryName)
+////            withContext(Dispatchers.Main) {
+////                Toast.makeText(context, categoryName, Toast.LENGTH_SHORT).show()
+////            }
+//        }
+//        navigateToMealFragment()
+//    }
+
+    private fun navigateToMealFragment1() {
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.nav_host_fragment_dashboard, MealFragment())
             .addToBackStack("MealFragment")

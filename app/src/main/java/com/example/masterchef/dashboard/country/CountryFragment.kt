@@ -10,14 +10,18 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.masterchef.R
-import com.example.masterchef.dashboard.meal.MealAdapter
+import com.example.masterchef.dashboard.country.model.MealAreaStr
+import com.example.masterchef.dashboard.country.view.CountryAdapter
+import com.example.masterchef.dashboard.country.view.CountryListener
+import com.example.masterchef.dashboard.meal.view.MealAdapter
 import com.example.masterchef.dashboard.meal.MealFragment
+import com.example.masterchef.dashboard.meal.view.MealListener
 import com.example.masterchef.network.APIClient
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class CountryFragment : Fragment()
-//    ,Communicator
-{
+class CountryFragment : Fragment(), CountryListener {
 
     private lateinit var rvCountry: RecyclerView
     private lateinit var rvMeals: RecyclerView
@@ -51,9 +55,7 @@ class CountryFragment : Fragment()
                     val countries = response.body()?.meals ?: emptyList()
                     rvCountry.layoutManager =
                         GridLayoutManager(context, 3)
-                    countryAdapter = CountryAdapter(countries) { countryName ->
-                        fetchMealsByCountry(countryName)
-                    }
+                    countryAdapter = CountryAdapter(countries, this@CountryFragment)
                     rvCountry.adapter = countryAdapter
                 }
             } catch (e: Exception) {
@@ -70,8 +72,7 @@ class CountryFragment : Fragment()
                 if (response.isSuccessful && response.body() != null) {
                     val meals = response.body()?.meals ?: emptyList()
                     rvMeals.layoutManager = LinearLayoutManager(context)
-//                    mealAdapter = MealAdapter(meals, this@CountryFragment)
-                    mealAdapter = MealAdapter(meals)
+                    mealAdapter = MealAdapter(meals, this@CountryFragment as MealListener)
                     rvMeals.adapter = mealAdapter
                 }
             } catch (e: Exception) {
@@ -80,11 +81,22 @@ class CountryFragment : Fragment()
         }
     }
 
-
     private fun navigateToMealFragment() {
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.nav_host_fragment_dashboard, MealFragment())
             .addToBackStack("MealFragment")
             .commit()
+    }
+
+    override fun onClick(country: MealAreaStr) {
+        val name = country.strArea
+        lifecycleScope.launch(Dispatchers.IO) {
+            fetchMealsByCountry(name)
+            withContext(Dispatchers.Main) {
+                navigateToMealFragment()
+
+            }
+        }
+
     }
 }
