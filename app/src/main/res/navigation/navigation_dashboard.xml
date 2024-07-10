@@ -45,6 +45,7 @@
     <fragment
         android:id="@+id/search"
         android:name="com.example.masterchef.dashboard.search.SearchFragment"
-        android:label="Search" />
+        android:label="Search"
+        tools:layout="@layout/fragment_search" />
 
 </navigation>

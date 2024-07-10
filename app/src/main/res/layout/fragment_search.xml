@@ -7,12 +7,13 @@
 
     <ImageView
         android:id="@+id/iv_background"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:src="@drawable/shape_gradiant_background"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:contentDescription="@string/search_msg"
+        android:src="@drawable/ic_launcher_basket_foreground"
+        app:layout_constraintBottom_toBottomOf="@+id/searchView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/tv_select_category" />
 
     <TextView
         android:id="@+id/tv_select_category"
@@ -20,62 +21,24 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Select Category To Search With:"
-        android:textSize="16sp"
+        android:fontFamily="casual"
+        android:text="@string/select_category_search_msg"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_country"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/shape_white_radius_corners"
-        android:text="Country"
-        android:visibility="gone"
-        app:layout_constraintEnd_toStartOf="@+id/btn_ingredient"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_select_category" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_ingredient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_white_radius_corners"
-        android:text="Ingredient"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_country"
-        app:layout_constraintEnd_toStartOf="@+id/btn_category"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_country"
-        app:layout_constraintTop_toTopOf="@+id/btn_country" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/shape_white_radius_corners"
-        android:text="Category"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_ingredient"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_ingredient"
-        app:layout_constraintTop_toTopOf="@+id/btn_ingredient" />
-
     <SearchView
         android:id="@+id/searchView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/shape_card_white"
+        app:layout_constraintEnd_toStartOf="@+id/iv_background"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_country" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_select_category" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_search"
@@ -86,4 +49,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_background"
         tools:listitem="@layout/item_meal" />
+
+    <ImageView
+        android:id="@+id/iv_search_empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_search" />
 </androidx.constraintlayout.widget.ConstraintLayout>

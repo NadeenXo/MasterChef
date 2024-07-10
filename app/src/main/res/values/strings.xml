@@ -31,4 +31,5 @@
     <string name="confirm_password_hint">Confirm Password</string>
     <string name="signup_action">signup</string>
     <string name="cancel_action">CANCEL</string>
+    <string name="select_category_search_msg">Select Category To Search With:</string>
 </resources>

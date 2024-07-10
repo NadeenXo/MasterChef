@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.country -> CountryFragment()
                 R.id.fav -> FavouriteFragment()
                 R.id.add -> AddFragment()
-//                R.id.calender -> CalenderFragment()
+                R.id.calender -> CalenderFragment()
                 R.id.search -> SearchFragment()
                 else -> HomeFragment()
             }

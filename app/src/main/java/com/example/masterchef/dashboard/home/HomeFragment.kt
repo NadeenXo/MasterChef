@@ -34,7 +34,6 @@ class HomeFragment : Fragment(), CategoryListener {
     private lateinit var img: ImageView
     private lateinit var mealCard: View
     private lateinit var service: ApiService
-    private lateinit var categorySearch: SearchView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +45,6 @@ class HomeFragment : Fragment(), CategoryListener {
         img = view.findViewById(R.id.iv_meal_card)
         recyclerView = view.findViewById(R.id.rv_home)
         mealCard = view.findViewById(R.id.meal_card_home)
-        categorySearch = view.findViewById(R.id.sv_categories)
 
 
         service = APIClient.getInstance()
@@ -91,15 +89,7 @@ class HomeFragment : Fragment(), CategoryListener {
                 Log.e("HomeFragment", "Exception: ${e.message}")
             }
         }
-        categorySearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                TODO("Not yet implemented")
-            }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                TODO("Not yet implemented")
-            }
-        })
         return view
     }
 
