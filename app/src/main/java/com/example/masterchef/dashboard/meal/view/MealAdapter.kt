@@ -19,8 +19,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MealAdapter(private val data: List<Meals>
-, private val listener: MealListener
+class MealAdapter(
+    private val data: List<Meals>, private val listener: MealListener
 ) : RecyclerView.Adapter<MealAdapter.MyViewHolder>() {
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -130,11 +130,4 @@ interface MealListener {
     fun onClick(id: String)
 }
 
-
-////todo: favDao and edit adapter
-//        //holder.img.text = data[position].idMeal
-//        holder.name.text = data[position].strMeal
-//        Glide.with(holder.itemView.context).load(data[position].strMealThumb).into(holder.img)
-//
-
-//        //todo : on click meal open details - error
+//todo : fav must be in the controller not view

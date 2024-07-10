@@ -1,4 +1,4 @@
-package com.example.masterchef.dashboard.meal
+package com.example.masterchef.dashboard.meal.view
 
 import android.view.LayoutInflater
 import android.view.View

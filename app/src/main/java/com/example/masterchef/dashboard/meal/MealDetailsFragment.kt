@@ -15,6 +15,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.masterchef.R
 import com.example.masterchef.dashboard.meal.model.MealDetails
+import com.example.masterchef.dashboard.meal.view.IngredientsAdapter
+import com.example.masterchef.dto.FavDAO
+import com.example.masterchef.dto.FavDataBase
+import com.example.masterchef.dto.FavouriteTable
 import com.example.masterchef.network.APIClient
 import com.example.masterchef.network.ApiService
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -27,7 +31,7 @@ import kotlinx.coroutines.withContext
 class MealDetailsFragment : Fragment() {
     private lateinit var mealId: String
     private lateinit var service: ApiService
-
+    private lateinit var myMeal: MealDetails
     private lateinit var nameTextView: TextView
     private lateinit var imageView: ImageView
     private lateinit var countryTextView: TextView
@@ -36,6 +40,7 @@ class MealDetailsFragment : Fragment() {
     private lateinit var addButton: Button
     private lateinit var removeButton: Button
     private lateinit var youtubePlayerView: YouTubePlayerView
+    private lateinit var favDao: FavDAO
 
     companion object {
         private const val ARG_MEAL_ID = "meal_id"
@@ -69,6 +74,8 @@ class MealDetailsFragment : Fragment() {
         youtubePlayerView = view.findViewById(R.id.youtube_player_view)
 
         service = APIClient.getInstance()
+        favDao = FavDataBase.getInstance(requireContext()).favDao()
+
 
         arguments?.let {
             mealId = it.getString(ARG_MEAL_ID, "")
@@ -76,6 +83,16 @@ class MealDetailsFragment : Fragment() {
 
         if (mealId.isNotEmpty()) {
             getMealDetails(mealId)
+        }
+        addButton.setOnClickListener {
+            lifecycleScope.launch {
+                addMealToFav(myMeal)
+            }
+        }
+        removeButton.setOnClickListener {
+            lifecycleScope.launch {
+                removeMealFromFav(myMeal)
+            }
         }
     }
 
@@ -87,7 +104,8 @@ class MealDetailsFragment : Fragment() {
                     val mealDetails = response.body()?.meals?.firstOrNull()
                     mealDetails?.let { meal ->
                         nameTextView.text = meal.strMeal
-                        Glide.with(this@MealDetailsFragment).load(meal.strMealThumb).centerCrop().into(imageView)
+                        Glide.with(this@MealDetailsFragment).load(meal.strMealThumb).centerCrop()
+                            .into(imageView)
                         countryTextView.text = meal.strArea
 
                         val ingredientsWithMeasures = extractIngredients(meal)
@@ -99,7 +117,8 @@ class MealDetailsFragment : Fragment() {
 
                         lifecycle.addObserver(youtubePlayerView)
 
-                        youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+                        youtubePlayerView.addYouTubePlayerListener(object :
+                            AbstractYouTubePlayerListener() {
                             override fun onReady(youTubePlayer: YouTubePlayer) {
                                 meal.strYoutube.let {
                                     val videoId = Uri.parse(it).getQueryParameter("v")
@@ -109,7 +128,10 @@ class MealDetailsFragment : Fragment() {
                                 }
                             }
                         })
+//                        addMealToFav(meal)
+                        myMeal = meal
                     }
+
                 } else {
                     // Handle error
                 }
@@ -117,6 +139,25 @@ class MealDetailsFragment : Fragment() {
                 // Handle exception
             }
         }
+    }
+
+    private suspend fun addMealToFav(meal: MealDetails): List<Long> {
+        val newFav = FavouriteTable(
+            meal.idMeal,
+            meal.strMeal,
+            meal.strMealThumb
+        )
+        return favDao.insert(newFav)
+    }
+
+    private suspend fun removeMealFromFav(meal: MealDetails) {
+        favDao.delete(
+            FavouriteTable(
+                meal.idMeal,
+                meal.strMeal,
+                meal.strMealThumb
+            )
+        )
     }
 
     private fun extractIngredients(meal: MealDetails): List<Pair<String, String>> {
