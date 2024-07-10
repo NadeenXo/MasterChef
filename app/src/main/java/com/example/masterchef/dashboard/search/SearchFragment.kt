@@ -68,8 +68,26 @@ class SearchFragment : Fragment(), MealListener {
         }
     }
 
-    private fun searchWithIngredients(query: String?) {
-        // TODO: Implement Ingredients Search
+    private fun searchWithIngredients(ingredientName: String?) {
+        lifecycleScope.launch {
+            try {
+                val response = ingredientName?.let { service.getMealByIngredient(it) }
+                if (response != null && response.isSuccessful && response.body() != null) {
+                    val meals = response.body()?.meals ?: emptyList()
+                    withContext(Dispatchers.Main) {
+                        rv.layoutManager = LinearLayoutManager(context)
+                        rv.adapter = MealAdapter(meals, this@SearchFragment)
+                        toggleEmptyView(meals.isEmpty())
+                    }
+                } else {
+                    toggleEmptyView(true)
+                }
+            } catch (e: Exception) {
+                Log.e("SearchFragment", "Error fetching meals by area", e)
+                toggleEmptyView(true)
+            }
+        }
+
     }
 
     private fun searchWithArea(countryName: String?) {

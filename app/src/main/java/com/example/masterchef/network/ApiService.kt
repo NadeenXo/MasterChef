@@ -37,6 +37,8 @@ interface ApiService {
 
     @GET("lookup.php")
     suspend fun getMealDetails(@Query("i") id: String): Response<MealsResponse>
+    @GET("filter.php")
+    suspend fun getMealByIngredient(@Query("i") id: String): Response<MealsResponse>
 
     //Search meal by name
     //www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata
