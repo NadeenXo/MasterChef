@@ -70,4 +70,8 @@ dependencies {
     implementation("androidx.room:room-runtime:2.6.1")
     kapt("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
+
+    //youtube player
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.0.0")
+
 }

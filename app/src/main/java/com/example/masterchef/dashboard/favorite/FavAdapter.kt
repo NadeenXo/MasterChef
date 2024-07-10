@@ -25,7 +25,7 @@ class FavAdapter(var data: List<FavouriteTable>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_fav_meals, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_fav_meal, parent, false)
         )
     }
 

@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.SearchView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -19,7 +17,6 @@ import com.example.masterchef.dashboard.home.model.category.Category
 import com.example.masterchef.dashboard.home.view.CategoriesAdapter
 import com.example.masterchef.dashboard.home.view.CategoryListener
 import com.example.masterchef.dashboard.meal.MealFragment
-import com.example.masterchef.dashboard.meal.view.MealAdapter
 import com.example.masterchef.network.APIClient
 import com.example.masterchef.network.ApiService
 import kotlinx.coroutines.Dispatchers
@@ -106,40 +103,4 @@ class HomeFragment : Fragment(), CategoryListener {
             .commit()
     }
 
-    private fun fetchMealsByCategories(categoryName: String) {
-        lifecycleScope.launch {
-            try {
-                val response = service.getMealsByCategory(categoryName)
-                if (response.isSuccessful && response.body() != null) {
-                    val meals = response.body()?.meals
-//                     recyclerView.layoutManager = LinearLayoutManager(context)
-//                    mealAdapter = MealAdapter(meals, this@CountryFragment)
-//                    mealAdapter = MealAdapter(meals)
-//                    rvMeals.adapter = mealAdapter
-                    Toast.makeText(context, "$meals", Toast.LENGTH_SHORT).show()
-                }
-            } catch (e: Exception) {
-                // Handle the error
-            }
-        }
-    }
-
-
-//    override fun onClick(category: Category) {
-//        categoryName = category.strCategory
-//        lifecycleScope.launch(Dispatchers.IO) {
-//          //  fetchMealsByCategories(categoryName)
-////            withContext(Dispatchers.Main) {
-////                Toast.makeText(context, categoryName, Toast.LENGTH_SHORT).show()
-////            }
-//        }
-//        navigateToMealFragment()
-//    }
-
-    private fun navigateToMealFragment1() {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_fragment_dashboard, MealFragment())
-            .addToBackStack("MealFragment")
-            .commit()
-    }
 }

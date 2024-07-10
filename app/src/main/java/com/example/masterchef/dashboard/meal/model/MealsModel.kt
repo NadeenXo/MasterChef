@@ -7,7 +7,6 @@ data class MealsResponse(
     @SerializedName("meals") val meals: List<Meals>
 )
 
-
 data class Meals(
     @SerializedName("idMeal") var idMeal: String,
     @SerializedName("strMeal") var strMeal: String,

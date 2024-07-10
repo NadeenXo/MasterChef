@@ -3,6 +3,7 @@ package com.example.masterchef.network
 import com.example.masterchef.dashboard.country.model.CountryResponse
 import com.example.masterchef.dashboard.home.model.CategoriesStrResponse
 import com.example.masterchef.dashboard.home.model.category.CategoriesResponse
+import com.example.masterchef.dashboard.meal.model.MealDetailsModel
 import com.example.masterchef.dashboard.meal.model.MealsResponse
 import com.example.masterchef.dashboard.search.RandomMealsResponse
 import retrofit2.Response
@@ -36,7 +37,7 @@ interface ApiService {
     suspend fun getAreas(): Response<CountryResponse>
 
     @GET("lookup.php")
-    suspend fun getMealDetails(@Query("i") id: String): Response<MealsResponse>
+    suspend fun getMealDetails(@Query("i") id: String): Response<MealDetailsModel>
     @GET("filter.php")
     suspend fun getMealByIngredient(@Query("i") id: String): Response<MealsResponse>
 
