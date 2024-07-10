@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -28,11 +29,12 @@ import kotlinx.coroutines.withContext
 
 class HomeFragment : Fragment(), CategoryListener {
     private lateinit var categoryName: String
-    lateinit var recyclerView: RecyclerView
-    lateinit var name: TextView
-    lateinit var img: ImageView
-    lateinit var mealCard: View
-    lateinit var service: ApiService
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var name: TextView
+    private lateinit var img: ImageView
+    private lateinit var mealCard: View
+    private lateinit var service: ApiService
+    private lateinit var categorySearch: SearchView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,23 +46,10 @@ class HomeFragment : Fragment(), CategoryListener {
         img = view.findViewById(R.id.iv_meal_card)
         recyclerView = view.findViewById(R.id.rv_home)
         mealCard = view.findViewById(R.id.meal_card_home)
+        categorySearch = view.findViewById(R.id.sv_categories)
 
 
         service = APIClient.getInstance()
-//        service.getMeals().enqueue(object : Callback<MealsModel?> {
-//            override fun onResponse(call: Call<MealsModel?>?, response: Response<MealsModel?>?) {
-//                Log.i("Meals", "onResponse: ${response?.body()}")
-//                val meals = response?.body()?.meals
-//                name.text = meals?.get(0)?.strMeal ?: " "
-//                if (isAdded) {
-//                    Glide.with(this@HomeFragment).load(meals?.get(0)?.strMealThumb).into(img)
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<MealsModel?>?, t: Throwable?) {
-//                Log.i("Meals", "onFailure: ${t?.cause}")
-//            }
-//        })
 
         lifecycleScope.launch(Dispatchers.IO) {
             try {
@@ -94,8 +83,6 @@ class HomeFragment : Fragment(), CategoryListener {
                             GridLayoutManager(requireActivity(), 2, RecyclerView.VERTICAL, false)
                         recyclerView.adapter =
                             categories?.let { CategoriesAdapter(it, this@HomeFragment) }
-//                        fetchMealsByCategories(categoryName)
-
                     }
                 } else {
                     Log.e("HomeFragment", "Error: ${categoriesResponse.code()}")
@@ -104,8 +91,29 @@ class HomeFragment : Fragment(), CategoryListener {
                 Log.e("HomeFragment", "Exception: ${e.message}")
             }
         }
+        categorySearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                TODO("Not yet implemented")
+            }
 
+            override fun onQueryTextChange(newText: String?): Boolean {
+                TODO("Not yet implemented")
+            }
+        })
         return view
+    }
+
+    override fun onClick(category: Category) {
+        categoryName = category.strCategory
+        navigateToMealFragment(categoryName)
+    }
+
+    private fun navigateToMealFragment(categoryName: String) {
+        val fragment = MealFragment.newInstance(categoryName)
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_fragment_dashboard, fragment)
+            .addToBackStack("MealFragment")
+            .commit()
     }
 
     private fun fetchMealsByCategories(categoryName: String) {
@@ -124,19 +132,6 @@ class HomeFragment : Fragment(), CategoryListener {
                 // Handle the error
             }
         }
-    }
-
-    override fun onClick(category: Category) {
-        categoryName = category.strCategory
-        navigateToMealFragment(categoryName)
-    }
-
-    private fun navigateToMealFragment(categoryName: String) {
-        val fragment = MealFragment.newInstance(categoryName)
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_fragment_dashboard, fragment)
-            .addToBackStack("MealFragment")
-            .commit()
     }
 
 

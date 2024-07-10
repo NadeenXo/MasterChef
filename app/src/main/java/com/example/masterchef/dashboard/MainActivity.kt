@@ -10,6 +10,7 @@ import com.example.masterchef.dashboard.country.CountryFragment
 import com.example.masterchef.dashboard.favorite.FavouriteFragment
 import com.example.masterchef.dashboard.home.HomeFragment
 import com.example.masterchef.dashboard.meal.MealFragment
+import com.example.masterchef.dashboard.search.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -34,7 +35,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.country -> CountryFragment()
                 R.id.fav -> FavouriteFragment()
                 R.id.add -> AddFragment()
-                R.id.calender -> CalenderFragment()
+//                R.id.calender -> CalenderFragment()
+                R.id.search -> SearchFragment()
                 else -> HomeFragment()
             }
             replaceFragment(fragment)

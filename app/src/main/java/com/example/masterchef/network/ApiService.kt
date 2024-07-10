@@ -47,6 +47,8 @@ interface ApiService {
     //Lookup full meal details by id
     //www.themealdb.com/api/json/v1/1/lookup.php?i=52772
     //
+
+//search
     //Filter by main ingredient
     //www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast
     //

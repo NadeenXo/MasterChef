@@ -21,9 +21,15 @@
         android:icon="@drawable/ic_add"
         android:title="@string/add_msg" />
 
+    <!--    <item-->
+    <!--        android:id="@+id/calender"-->
+    <!--        android:enabled="true"-->
+    <!--        android:icon="@drawable/ic_calendar"-->
+    <!--        android:title="@string/calender_msg" />-->
+
     <item
-        android:id="@+id/calender"
+        android:id="@+id/search"
         android:enabled="true"
-        android:icon="@drawable/ic_calendar"
-        android:title="@string/calender_msg" />
+        android:icon="@drawable/ic_search"
+        android:title="@string/search_msg" />
 </menu>

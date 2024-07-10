@@ -17,7 +17,7 @@ import kotlinx.coroutines.withContext
 
 
 class SearchFragment : Fragment() {
-    lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +37,7 @@ class SearchFragment : Fragment() {
 //
 //        }
 
-//todo: search
+//todo: search using area / ingredients / category
 
 //        lifecycleScope.launch(Dispatchers.IO) {
 //            try {
