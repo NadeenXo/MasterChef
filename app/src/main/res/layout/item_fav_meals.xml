@@ -22,9 +22,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="2dp"
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/iv_meal_fav_item"
+        app:layout_constraintEnd_toStartOf="@+id/delete_iv_fav_item"
         app:layout_constraintStart_toEndOf="@+id/iv_meal_fav_item"
         app:layout_constraintTop_toTopOf="@+id/iv_meal_fav_item"
         tools:text="@string/meal_name" />
@@ -33,13 +35,10 @@
         android:id="@+id/delete_iv_fav_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:padding="8dp"
-        android:src="@drawable/ic_delete"
+        android:src="@drawable/ic_trash"
         app:layout_constraintBottom_toBottomOf="@+id/tv_meal_name_fav_item"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/tv_meal_name_fav_item"
         app:layout_constraintTop_toTopOf="@+id/tv_meal_name_fav_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>

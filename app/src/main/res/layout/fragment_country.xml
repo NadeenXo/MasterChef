@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:fontFamily="casual"
-        android:text="Choose Country To Display Its Popular Meals:"
+        android:text="@string/choose_country_msg"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

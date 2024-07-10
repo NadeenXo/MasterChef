@@ -30,5 +30,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/iv_category"
         app:layout_constraintStart_toStartOf="@+id/iv_category"
-        tools:text="Category" />
+        tools:text="@string/categories_msg" />
 </androidx.constraintlayout.widget.ConstraintLayout>

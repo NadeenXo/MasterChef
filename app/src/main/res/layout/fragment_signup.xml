@@ -15,7 +15,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="128dp"
         android:layout_marginEnd="16dp"
-        android:hint="Email"
+        android:hint="@string/email_hint"
         android:inputType="textEmailAddress"
         android:padding="8dp" />
 
@@ -26,7 +26,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="Password"
+        android:hint="@string/password_hint"
         android:inputType="textPassword"
         android:padding="8dp" />
 
@@ -37,7 +37,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:hint="Confirm Password"
+        android:hint="@string/confirm_password_hint"
         android:inputType="textPassword"
         android:padding="8dp" />
 
@@ -49,7 +49,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        android:text="signup" />
+        android:text="@string/signup_action" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_cancel_signup"
@@ -59,7 +59,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:text="CANCEL" />
+        android:text="@string/cancel_action" />
 
 
 </LinearLayout>

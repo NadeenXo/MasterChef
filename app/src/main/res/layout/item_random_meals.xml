@@ -33,24 +33,4 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_meal_random"
         tools:text="@string/meal_name" />
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/id_tv"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="8dp"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        tools:text="@string/meal_name" />-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/str_tv"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="16dp"-->
-    <!--        app:layout_constraintEnd_toEndOf="@+id/id_tv"-->
-    <!--        app:layout_constraintStart_toStartOf="@+id/id_tv"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/id_tv"-->
-    <!--        tools:text="@string/meal_name" />-->
-
 </androidx.constraintlayout.widget.ConstraintLayout>

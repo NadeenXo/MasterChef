@@ -18,11 +18,17 @@
     <string name="calender_msg">CALENDER</string>
     <string name="favourite_msg">Favourite</string>
     <string name="country_msg">Country</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <!--  shared prefs   -->
-    <!--    <string name="preference_file_key">com.example.masterchef.onboarding.loggedin</string>-->
-    <!--    <string name="logged">com.example.masterchef.onboarding.logged</string>-->
-    <!--    &#45;&#45;   -->
+    <string name="choose_country_msg">Choose Country To Display Its Popular Meals:</string>
+    <string name="meal_of_the_day_msg">Meal Of The Day</string>
+    <string name="categories_msg">Categories</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="country_hint">Country:</string>
+    <string name="ingredients_hint">Ingredients:</string>
+    <string name="steps_hint">Steps:</string>
+    <string name="add_action">Add</string>
+    <string name="remove_action">Remove</string>
+    <string name="confirm_password_hint">Confirm Password</string>
+    <string name="signup_action">signup</string>
+    <string name="cancel_action">CANCEL</string>
 </resources>
