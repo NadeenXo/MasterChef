@@ -21,7 +21,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class CountryFragment : Fragment(), CountryListener {
+class CountryFragment : Fragment(), CountryListener, MealListener {
 
     private lateinit var rvCountry: RecyclerView
     private lateinit var rvMeals: RecyclerView
@@ -88,15 +88,16 @@ class CountryFragment : Fragment(), CountryListener {
             .commit()
     }
 
+
     override fun onClick(country: MealAreaStr) {
         val name = country.strArea
         lifecycleScope.launch(Dispatchers.IO) {
             fetchMealsByCountry(name)
-            withContext(Dispatchers.Main) {
-                navigateToMealFragment()
-
-            }
         }
+    }
 
+    override fun onClick(mealId: String) {
+        // Handle meal click event
+        navigateToMealFragment()
     }
 }
