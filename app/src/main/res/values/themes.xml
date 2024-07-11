@@ -24,19 +24,25 @@
 
 
     <style name="Button.White" parent="Widget.AppCompat.Button">
-        <item name="android:background">@drawable/shape_white_radius_corners</item>
+        <item name="android:background">@drawable/shape_white_corners</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:padding">8dp</item>
     </style>
 
     <style name="Button.Black" parent="Widget.AppCompat.Button">
-        <item name="android:background">@drawable/shape_black_radius_corners</item>
+        <item name="android:background">@drawable/shape_black_corners</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:padding">8dp</item>
     </style>
 
     <style name="Button.Purple" parent="Widget.AppCompat.Button">
-        <item name="android:background">@drawable/shape_purple_radius_corners</item>
+        <item name="android:background">@drawable/shape_purple_corners</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="Button.Blue" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/shape_blue_corners</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:padding">8dp</item>
     </style>

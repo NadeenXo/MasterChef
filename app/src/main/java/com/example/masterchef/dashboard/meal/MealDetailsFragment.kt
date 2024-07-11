@@ -1,5 +1,6 @@
 package com.example.masterchef.dashboard.meal
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -27,6 +28,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.Calendar
 
 class MealDetailsFragment : Fragment() {
     private lateinit var mealId: String
@@ -39,6 +41,7 @@ class MealDetailsFragment : Fragment() {
     private lateinit var stepsTextView: TextView
     private lateinit var addButton: Button
     private lateinit var removeButton: Button
+    private lateinit var calendarButton: Button
     private lateinit var youtubePlayerView: YouTubePlayerView
     private lateinit var favDao: FavDAO
 
@@ -71,6 +74,7 @@ class MealDetailsFragment : Fragment() {
         stepsTextView = view.findViewById(R.id.steps_tv_meal)
         addButton = view.findViewById(R.id.add_btn_meal)
         removeButton = view.findViewById(R.id.remove_btn_meal)
+        calendarButton = view.findViewById(R.id.add_calender_btn_meal)
         youtubePlayerView = view.findViewById(R.id.youtube_player_view)
 
         service = APIClient.getInstance()
@@ -94,6 +98,36 @@ class MealDetailsFragment : Fragment() {
                 removeMealFromFav(myMeal)
             }
         }
+        addToCalender()
+    }
+
+    private fun addToCalender() {
+        // Get the current time
+        val calendar = Calendar.getInstance()
+
+// Set the event start time to tomorrow at 9:00 AM
+        calendar.add(Calendar.DAY_OF_YEAR, 1)
+        calendar.set(Calendar.HOUR_OF_DAY, 9)
+        calendar.set(Calendar.MINUTE, 0)
+        calendar.set(Calendar.SECOND, 0)
+        val startTime = calendar.time
+
+// Set the event end time to tomorrow at 12:00 PM
+        calendar.set(Calendar.HOUR_OF_DAY, 12)
+        val endTime = calendar.time
+
+// When Button is clicked, Intent started to create an event with given time
+        calendarButton.setOnClickListener {
+            val intent = Intent(Intent.ACTION_EDIT)
+            intent.type = "vnd.android.cursor.item/event"
+            intent.putExtra("beginTime", startTime.time)
+            intent.putExtra("time", true)
+            intent.putExtra("rule", "FREQ=YEARLY")
+            intent.putExtra("endTime", endTime.time)
+            intent.putExtra("title", "Geeksforgeeks Event")
+            startActivity(intent)
+        }
+
     }
 
     private fun getMealDetails(id: String) {

@@ -13,13 +13,13 @@ import com.example.masterchef.R
 import com.example.masterchef.dashboard.country.model.MealAreaStr
 import com.example.masterchef.dashboard.country.view.CountryAdapter
 import com.example.masterchef.dashboard.country.view.CountryListener
+import com.example.masterchef.dashboard.meal.MealDetailsFragment
 import com.example.masterchef.dashboard.meal.view.MealAdapter
-import com.example.masterchef.dashboard.meal.MealFragment
 import com.example.masterchef.dashboard.meal.view.MealListener
 import com.example.masterchef.network.APIClient
+import com.example.masterchef.network.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class CountryFragment : Fragment(), CountryListener, MealListener {
 
@@ -27,6 +27,7 @@ class CountryFragment : Fragment(), CountryListener, MealListener {
     private lateinit var rvMeals: RecyclerView
     private lateinit var countryAdapter: CountryAdapter
     private lateinit var mealAdapter: MealAdapter
+    private lateinit var service: ApiService
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +42,7 @@ class CountryFragment : Fragment(), CountryListener, MealListener {
 
         rvCountry = view.findViewById(R.id.rv_countries)
         rvMeals = view.findViewById(R.id.rv_meals_countries)
+        service = APIClient.getInstance()
 
         fetchCountries()
         fetchMealsByCountry("American")
@@ -49,7 +51,6 @@ class CountryFragment : Fragment(), CountryListener, MealListener {
     private fun fetchCountries() {
         lifecycleScope.launch {
             try {
-                val service = APIClient.getInstance()
                 val response = service.getAreas()
                 if (response.isSuccessful) {
                     val countries = response.body()?.meals ?: emptyList()
@@ -67,12 +68,11 @@ class CountryFragment : Fragment(), CountryListener, MealListener {
     private fun fetchMealsByCountry(countryName: String) {
         lifecycleScope.launch {
             try {
-                val service = APIClient.getInstance()
                 val response = service.getMealsByArea(countryName)
                 if (response.isSuccessful && response.body() != null) {
                     val meals = response.body()?.meals ?: emptyList()
                     rvMeals.layoutManager = LinearLayoutManager(context)
-                    mealAdapter = MealAdapter(meals, this@CountryFragment as MealListener)
+                    mealAdapter = MealAdapter(meals, this@CountryFragment)
                     rvMeals.adapter = mealAdapter
                 }
             } catch (e: Exception) {
@@ -81,14 +81,6 @@ class CountryFragment : Fragment(), CountryListener, MealListener {
         }
     }
 
-    private fun navigateToMealFragment() {
-        requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_fragment_dashboard, MealFragment())
-            .addToBackStack("MealFragment")
-            .commit()
-    }
-
-
     override fun onClick(country: MealAreaStr) {
         val name = country.strArea
         lifecycleScope.launch(Dispatchers.IO) {
@@ -96,8 +88,15 @@ class CountryFragment : Fragment(), CountryListener, MealListener {
         }
     }
 
-    override fun onClick(mealId: String) {
-        // Handle meal click event
-        navigateToMealFragment()
+    override fun onClick(id: String) {
+        navigateToMealDetailsFragment(id)
+    }
+
+    private fun navigateToMealDetailsFragment(mealId: String) {
+        val fragment = MealDetailsFragment.newInstance(mealId)
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_fragment_dashboard, fragment)
+            .addToBackStack("MealDetailsFragment")
+            .commit()
     }
 }

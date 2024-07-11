@@ -26,8 +26,9 @@
     <string name="country_hint">Country:</string>
     <string name="ingredients_hint">Ingredients:</string>
     <string name="steps_hint">Steps:</string>
-    <string name="add_action">Add</string>
-    <string name="remove_action">Remove</string>
+    <string name="add_action">Add To Favourite</string>
+    <string name="remove_action">Remove From Favourite</string>
+    <string name="calender_action">Add To Calender</string>
     <string name="confirm_password_hint">Confirm Password</string>
     <string name="signup_action">signup</string>
     <string name="cancel_action">CANCEL</string>
