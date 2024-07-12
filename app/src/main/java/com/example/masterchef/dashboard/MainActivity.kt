@@ -15,12 +15,13 @@ import com.example.masterchef.dashboard.search.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
-
+    private lateinit var logout: Logout
     private lateinit var navView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+//        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         navView = findViewById(R.id.bottom_nav)
 
@@ -35,7 +36,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> HomeFragment()
                 R.id.country -> CountryFragment()
                 R.id.fav -> FavouriteFragment()
-                R.id.add -> AddFragment()
+                R.id.plan -> AddFragment()
+//                R.id.add -> AddFragment()
 //                R.id.calender -> CalenderFragment()
                 R.id.search -> SearchFragment()
                 else -> HomeFragment()
@@ -53,15 +55,19 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.settings -> {
-                Toast.makeText(this,"settings",Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "settings", Toast.LENGTH_LONG).show()
                 return true
             }
+
             R.id.share -> {
                 return true
             }
+
             R.id.logout -> {
+                logout.onClick()
                 return true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -73,4 +79,8 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+}
+
+interface Logout {
+    fun onClick()
 }

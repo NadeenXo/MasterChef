@@ -20,15 +20,20 @@
         android:enabled="true"
         android:icon="@drawable/ic_search"
         android:title="@string/search_msg" />
+    <!--    <item-->
+    <!--        android:id="@+id/add"-->
+    <!--        android:enabled="true"-->
+    <!--        android:icon="@drawable/ic_add"-->
+    <!--        android:title="@string/add_msg" /> -->
     <item
-        android:id="@+id/add"
+        android:id="@+id/plan"
         android:enabled="true"
-        android:icon="@drawable/ic_add"
-        android:title="@string/add_msg" />
-<!--    <item-->
-<!--        android:id="@+id/calender"-->
-<!--        android:enabled="true"-->
-<!--        android:icon="@drawable/ic_calendar"-->
-<!--        android:title="@string/calender_msg" />-->
+        android:icon="@drawable/ic_plan"
+        android:title="@string/plan" />
+    <!--    <item-->
+    <!--        android:id="@+id/calender"-->
+    <!--        android:enabled="true"-->
+    <!--        android:icon="@drawable/ic_calendar"-->
+    <!--        android:title="@string/calender_msg" />-->
 
 </menu>

@@ -29,11 +29,11 @@ class OnBoardingActivity : AppCompatActivity() {
         const val RC_SIGN_IN = 9001
     }
 
-    lateinit var login: TextView
-    lateinit var skip: TextView
-    lateinit var signup: Button
-    lateinit var signupGoogle: Button
-    lateinit var sharedPref: SharedPreferences
+    private lateinit var login: TextView
+    private lateinit var skip: TextView
+    private lateinit var signup: Button
+    private lateinit var signupGoogle: Button
+    private lateinit var sharedPref: SharedPreferences
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
 

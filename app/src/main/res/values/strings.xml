@@ -12,8 +12,8 @@
     <string name="skip_action">Skip</string>
     <string name="cancel_msg">Cancel</string>
     <!--    menu-->
-    <string name="for_you_msg">FOR YOU</string>
-    <string name="search_msg">SEARCH</string>
+    <string name="for_you_msg">For You</string>
+    <string name="search_msg">Search</string>
     <string name="add_msg">ADD</string>
     <string name="calender_msg">CALENDER</string>
     <string name="favourite_msg">Favourite</string>
@@ -37,4 +37,5 @@
     <string name="settings_action">Settings</string>
     <string name="share_action">Share</string>
     <string name="logout_action">log out</string>
+    <string name="plan">Plan</string>
 </resources>

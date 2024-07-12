@@ -9,12 +9,13 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_main"
         android:layout_width="0dp"
-        app:title="@string/app_name"
         android:layout_height="wrap_content"
+        android:background="@color/lighter_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/toolbar_menu" />
+        app:menu="@menu/toolbar_menu"
+        app:title="@string/app_name" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment_dashboard"

@@ -6,11 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".dashboard.home.HomeFragment">
 
+    <ImageView
+        android:id="@+id/iv_blue"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:src="@color/lighter_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tv_meal_of_day"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:fontFamily="casual"
         android:text="@string/meal_of_the_day_msg"
         android:textAlignment="center"
