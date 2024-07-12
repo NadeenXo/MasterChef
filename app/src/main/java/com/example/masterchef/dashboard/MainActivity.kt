@@ -1,15 +1,16 @@
 package  com.example.masterchef.dashboard
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.masterchef.R
 import com.example.masterchef.dashboard.add.AddFragment
-import com.example.masterchef.dashboard.calender.CalenderFragment
 import com.example.masterchef.dashboard.country.CountryFragment
 import com.example.masterchef.dashboard.favorite.FavouriteFragment
 import com.example.masterchef.dashboard.home.HomeFragment
-import com.example.masterchef.dashboard.meal.MealFragment
 import com.example.masterchef.dashboard.search.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.country -> CountryFragment()
                 R.id.fav -> FavouriteFragment()
                 R.id.add -> AddFragment()
-                R.id.calender -> CalenderFragment()
+//                R.id.calender -> CalenderFragment()
                 R.id.search -> SearchFragment()
                 else -> HomeFragment()
             }
@@ -44,6 +45,26 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.settings -> {
+                Toast.makeText(this,"settings",Toast.LENGTH_LONG).show()
+                return true
+            }
+            R.id.share -> {
+                return true
+            }
+            R.id.logout -> {
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager

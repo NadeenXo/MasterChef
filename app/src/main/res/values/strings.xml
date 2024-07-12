@@ -34,4 +34,7 @@
     <string name="cancel_action">CANCEL</string>
     <string name="select_category_search_msg">Select Category To Search With:</string>
     <string name="youtube_action">Youtube</string>
+    <string name="settings_action">Settings</string>
+    <string name="share_action">Share</string>
+    <string name="logout_action">log out</string>
 </resources>
