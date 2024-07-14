@@ -42,6 +42,7 @@ class MealDetailsFragment : Fragment() {
     private lateinit var addButton: Button
     private lateinit var removeButton: Button
     private lateinit var calendarButton: Button
+    private lateinit var planButton: Button
     private lateinit var youtubePlayerView: YouTubePlayerView
     private lateinit var favDao: FavDAO
 
@@ -75,6 +76,7 @@ class MealDetailsFragment : Fragment() {
         addButton = view.findViewById(R.id.add_btn_meal)
         removeButton = view.findViewById(R.id.remove_btn_meal)
         calendarButton = view.findViewById(R.id.add_calender_btn_meal)
+        planButton = view.findViewById(R.id.add_plan_btn_meal)
         youtubePlayerView = view.findViewById(R.id.youtube_player_view)
 
         service = APIClient.getInstance()
@@ -99,6 +101,9 @@ class MealDetailsFragment : Fragment() {
             }
         }
         addToCalender()
+        planButton.setOnClickListener {
+            //todo
+        }
     }
 
     private fun addToCalender() {
@@ -124,7 +129,7 @@ class MealDetailsFragment : Fragment() {
             intent.putExtra("time", true)
             intent.putExtra("rule", "FREQ=YEARLY")
             intent.putExtra("endTime", endTime.time)
-            intent.putExtra("title", "Geeksforgeeks Event")
+            intent.putExtra("title", nameTextView.text)
             startActivity(intent)
         }
 
@@ -138,7 +143,8 @@ class MealDetailsFragment : Fragment() {
                     val mealDetails = response.body()?.meals?.firstOrNull()
                     mealDetails?.let { meal ->
                         nameTextView.text = meal.strMeal
-                        Glide.with(this@MealDetailsFragment).load(meal.strMealThumb).centerCrop()
+                        Glide.with(this@MealDetailsFragment).load(meal.strMealThumb)
+                            .centerCrop()
                             .into(imageView)
                         countryTextView.text = meal.strArea
 
@@ -198,7 +204,8 @@ class MealDetailsFragment : Fragment() {
         val ingredientsWithMeasures = mutableListOf<Pair<String, String>>()
         for (i in 1..20) {
             val ingredient =
-                meal::class.java.getDeclaredField("strIngredient$i").apply { isAccessible = true }
+                meal::class.java.getDeclaredField("strIngredient$i")
+                    .apply { isAccessible = true }
                     .get(meal) as? String
             val measure =
                 meal::class.java.getDeclaredField("strMeasure$i").apply { isAccessible = true }
