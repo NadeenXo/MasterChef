@@ -40,50 +40,90 @@
             app:layout_constraintTop_toBottomOf="@id/name_tv_meal"
             tools:srcCompat="@tools:sample/avatars" />
 
+        <ImageView
+            android:id="@+id/iv_country_bg"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/iv_category_bg"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/meal_iv_meal"
+            app:srcCompat="@drawable/shape_card_white" />
+
         <TextView
             android:id="@+id/country_hint_tv_meal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="8dp"
             android:text="@string/country_hint"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/meal_iv_meal" />
+            app:layout_constraintStart_toStartOf="@+id/iv_country_bg"
+            app:layout_constraintTop_toTopOf="@+id/iv_country_bg" />
 
         <TextView
             android:id="@+id/country_tv_meal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_country_bg"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/country_hint_tv_meal"
+            app:layout_constraintTop_toBottomOf="@+id/country_hint_tv_meal"
+            tools:text="country" />
+
+        <ImageView
+            android:id="@+id/iv_category_bg"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/iv_country_bg"
+            app:layout_constraintTop_toTopOf="@+id/iv_country_bg"
+            app:srcCompat="@drawable/shape_card_white" />
+
+        <TextView
+            android:id="@+id/category_hint_tv_meal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/country_hint_tv_meal"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/category_hint"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/iv_category_bg"
+            app:layout_constraintTop_toTopOf="@+id/iv_category_bg" />
+
+        <TextView
+            android:id="@+id/category_tv_meal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/categories_msg"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_category_bg"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@id/country_hint_tv_meal"
-            app:layout_constraintTop_toTopOf="@id/country_hint_tv_meal"
-            tools:text="country" />
+            app:layout_constraintStart_toStartOf="@+id/category_hint_tv_meal"
+            app:layout_constraintTop_toBottomOf="@+id/category_hint_tv_meal" />
 
         <TextView
             android:id="@+id/ingredient_hint_tv_meal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:text="@string/ingredients_hint"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@id/country_tv_meal"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/country_hint_tv_meal"
-            app:layout_constraintTop_toBottomOf="@id/country_hint_tv_meal" />
+            app:layout_constraintStart_toStartOf="@+id/meal_iv_meal"
+            app:layout_constraintTop_toBottomOf="@+id/iv_country_bg" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ingredient_list"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:background="@drawable/shape_card_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/ingredient_hint_tv_meal"
             app:layout_constraintTop_toBottomOf="@id/ingredient_hint_tv_meal"
@@ -109,9 +149,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            android:background="@drawable/shape_card_white"
+            android:padding="4dp"
             android:text="@string/steps_hint"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/steps_hint_tv_meal"
             app:layout_constraintTop_toBottomOf="@id/steps_hint_tv_meal" />
 
