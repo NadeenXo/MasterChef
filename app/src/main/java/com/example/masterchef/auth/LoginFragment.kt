@@ -12,14 +12,17 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.edit
 import com.example.masterchef.R
+import com.example.masterchef.dashboard.Logout
 import com.example.masterchef.dashboard.MainActivity
+import com.example.masterchef.onboarding.OnBoardingActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 
-class LoginFragment : Fragment() {
+class LoginFragment : Fragment(), Logout {
     private lateinit var bCancel: Button
     private lateinit var bLogin: Button
     private lateinit var etEmail: EditText
@@ -113,5 +116,11 @@ class LoginFragment : Fragment() {
             return false
         }
         return true
+    }
+
+    override fun onClick() {
+        auth.signOut()
+        startActivity(Intent(activity, OnBoardingActivity::class.java))
+        requireActivity().finish()
     }
 }

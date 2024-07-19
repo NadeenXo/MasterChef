@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/name_tv_meal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="casual"
+            android:text="@string/meal_name"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/meal_iv_meal"
+            android:layout_width="0dp"
+            android:layout_height="240dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:maxWidth="200dp"
+            android:maxHeight="240dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name_tv_meal"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/iv_country_bg"
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/iv_category_bg"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/meal_iv_meal"
+            app:srcCompat="@drawable/shape_card_white" />
+
+        <TextView
+            android:id="@+id/country_hint_tv_meal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/country_hint"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/iv_country_bg"
+            app:layout_constraintTop_toTopOf="@+id/iv_country_bg" />
+
+        <TextView
+            android:id="@+id/country_tv_meal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_country_bg"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/country_hint_tv_meal"
+            app:layout_constraintTop_toBottomOf="@+id/country_hint_tv_meal"
+            tools:text="country" />
+
+        <ImageView
+            android:id="@+id/iv_category_bg"
+            android:layout_width="120dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/iv_country_bg"
+            app:layout_constraintTop_toTopOf="@+id/iv_country_bg"
+            app:srcCompat="@drawable/shape_card_white" />
+
+        <TextView
+            android:id="@+id/category_hint_tv_meal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/category_hint"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/iv_category_bg"
+            app:layout_constraintTop_toTopOf="@+id/iv_category_bg" />
+
+        <TextView
+            android:id="@+id/category_tv_meal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/categories_msg"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/iv_category_bg"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/category_hint_tv_meal"
+            app:layout_constraintTop_toBottomOf="@+id/category_hint_tv_meal" />
+
+        <TextView
+            android:id="@+id/ingredient_hint_tv_meal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ingredients_hint"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/country_tv_meal"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/meal_iv_meal"
+            app:layout_constraintTop_toBottomOf="@+id/iv_country_bg" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ingredient_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/shape_card_white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/ingredient_hint_tv_meal"
+            app:layout_constraintTop_toBottomOf="@id/ingredient_hint_tv_meal"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_ingredient" />
+
+        <TextView
+            android:id="@+id/steps_hint_tv_meal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/steps_hint"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/ingredient_hint_tv_meal"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/ingredient_hint_tv_meal"
+            app:layout_constraintTop_toBottomOf="@id/ingredient_list" />
+
+        <TextView
+            android:id="@+id/steps_tv_meal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/shape_card_white"
+            android:padding="4dp"
+            android:text="@string/steps_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/steps_hint_tv_meal"
+            app:layout_constraintTop_toBottomOf="@id/steps_hint_tv_meal" />
+
+        <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+            android:id="@+id/youtube_player_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:autoPlay="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/steps_tv_meal" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/add_btn_meal"
+            style="@style/Button.Blue"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:drawableEnd="@drawable/ic_heart_red"
+            android:drawablePadding="2dp"
+            android:drawableTint="@color/white"
+            android:text="@string/add_action"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/youtube_player_view" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/remove_btn_meal"
+            style="@style/Button.White"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:drawableEnd="@drawable/ic_heart_red"
+            android:drawablePadding="2dp"
+            android:drawableTint="@color/black"
+            android:text="@string/remove_action"
+            app:layout_constraintStart_toStartOf="@+id/add_btn_meal"
+            app:layout_constraintTop_toBottomOf="@+id/add_btn_meal" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/add_calender_btn_meal"
+            style="@style/Button.Black"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:drawableStart="@drawable/ic_calendar"
+            android:drawablePadding="2dp"
+            android:drawableTint="@color/white"
+            android:text="@string/calender_action"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/remove_btn_meal" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/add_plan_btn_meal"
+            style="@style/Button.Blue"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:drawableStart="@drawable/ic_plan"
+            android:drawablePadding="2dp"
+            android:drawableTint="@color/white"
+            android:text="@string/plan_action"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/add_calender_btn_meal"
+            app:layout_constraintTop_toBottomOf="@id/add_calender_btn_meal" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

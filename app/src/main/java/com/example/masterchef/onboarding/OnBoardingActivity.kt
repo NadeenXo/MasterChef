@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -30,11 +29,11 @@ class OnBoardingActivity : AppCompatActivity() {
         const val RC_SIGN_IN = 9001
     }
 
-    lateinit var login: TextView
-    lateinit var skip: TextView
-    lateinit var signup: Button
-    lateinit var signupGoogle: Button
-    lateinit var sharedPref: SharedPreferences
+    private lateinit var login: TextView
+    private lateinit var skip: TextView
+    private lateinit var signup: Button
+    private lateinit var signupGoogle: Button
+    private lateinit var sharedPref: SharedPreferences
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
 
@@ -62,6 +61,7 @@ class OnBoardingActivity : AppCompatActivity() {
             sharedPref.edit {
                 putBoolean(LoginManager.PREFERENCE_IS_LOGGED, false)
             }
+            startMainActivity()
         }
 //        signupGoogle.setOnClickListener {
 //            signInWithGoogle()
@@ -73,6 +73,12 @@ class OnBoardingActivity : AppCompatActivity() {
 //            .build()
 //        googleSignInClient = GoogleSignIn.getClient(this, gso)
     }
+    private fun startLoginFragment() {
+        val intent = Intent(this, AuthActivity::class.java)
+        intent.putExtra(DESTINATION_FRAGMENT, R.id.loginFragment)
+        startActivity(intent)
+        finish()
+    }
 
     private fun startSignupFragment() {
         val intent = Intent(this, AuthActivity::class.java)
@@ -80,11 +86,21 @@ class OnBoardingActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-//    private fun signInWithGoogle() {
+    private fun startMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    //todo: check this
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
+    }
+
+    //    private fun signInWithGoogle() {
 //        val signInIntent = googleSignInClient.signInIntent
 //        startActivityForResult(signInIntent, RC_SIGN_IN)
-//    }
-
 //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 //        super.onActivityResult(requestCode, resultCode, data)
 //
@@ -93,8 +109,6 @@ class OnBoardingActivity : AppCompatActivity() {
 //            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
 //            handleSignInResult(task)
 //        }
-//    }
-
 //    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
 //        try {
 //            val account = completedTask.getResult(ApiException::class.java)!!
@@ -103,8 +117,6 @@ class OnBoardingActivity : AppCompatActivity() {
 //        } catch (e: ApiException) {
 //            Log.w("TAG", "Google sign in failed", e)
 //        }
-//    }
-
 //    private fun firebaseAuthWithGoogle(idToken: String) {
 //        val credential = GoogleAuthProvider.getCredential(idToken, null)
 //        auth.signInWithCredential(credential)
@@ -122,17 +134,12 @@ class OnBoardingActivity : AppCompatActivity() {
 //                    Log.w("TAG", "signInWithCredential:failure", task.exception)
 //                }
 //            }
+
 //    }
 
-    private fun startLoginFragment() {
-        val intent = Intent(this, AuthActivity::class.java)
-        intent.putExtra(DESTINATION_FRAGMENT, R.id.loginFragment)
-        startActivity(intent)
-    }
+//    }
 
-    //todo: check this
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finishAffinity()
-    }
+//    }
+
+//    }
 }

@@ -6,23 +6,62 @@
     android:layout_height="match_parent"
     tools:context=".dashboard.home.HomeFragment">
 
-    <include
-        android:id="@+id/meal_card_main"
-        layout="@layout/meal_card"
+    <ImageView
+        android:id="@+id/iv_blue"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
+        android:src="@color/lighter_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tv_meal_of_day"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="casual"
+        android:text="@string/meal_of_the_day_msg"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/meal_card_home"
+        layout="@layout/meal_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_meal_of_day" />
+
+    <TextView
+        android:id="@+id/tv_categories_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="casual"
+        android:text="@string/categories_msg"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/meal_card_home"
+        app:layout_constraintTop_toBottomOf="@+id/meal_card_home" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv"
+        android:id="@+id/rv_home"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:foregroundGravity="center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/meal_card_main"
+        app:layout_constraintTop_toBottomOf="@+id/tv_categories_home"
         tools:listitem="@layout/item_category" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,25 +6,26 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.masterchef.R
 import com.example.masterchef.dto.FavDataBase
-import com.example.masterchef.dto.fav
+import com.example.masterchef.dto.FavouriteTable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class FavAdapter(var data: List<fav>) :
+class FavAdapter(var data: List<FavouriteTable>) :
     RecyclerView.Adapter<FavAdapter.MyViewHolder>() {
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val id: TextView = itemView.findViewById(R.id.id_tv)
-        val str: TextView = itemView.findViewById(R.id.str_tv)
-        val img: ImageView = itemView.findViewById(R.id.delete_iv)
+        val img: ImageView = itemView.findViewById(R.id.iv_meal_fav_item)
+        val name: TextView = itemView.findViewById(R.id.tv_meal_name_fav_item)
+        val del: ImageView = itemView.findViewById(R.id.delete_iv_fav_item)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_fav_meals, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_fav_meal, parent, false)
         )
     }
 
@@ -35,12 +36,15 @@ class FavAdapter(var data: List<fav>) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val favDao = FavDataBase.getInstance(holder.itemView.context).favDao()
 
-        holder.id.text = data[position].idMeal
-        holder.str.text = data[position].strMeal
-        holder.img.setOnClickListener {
+        holder.name.text = data[position].strMeal
+
+        //todo:edit data class
+        Glide.with(holder.itemView.context).load(data[position].strMealThumb).into(holder.img)
+        //todo: edit favDao
+        holder.del.setOnClickListener {
             GlobalScope.launch {
                 favDao.delete(data[position])
-                data = favDao.getFavs()
+                data = favDao.getAll()
                 withContext(Dispatchers.Main) {
                     notifyDataSetChanged()
                 }

@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class FavouriteFragment : Fragment() {
-    lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +30,7 @@ class FavouriteFragment : Fragment() {
 
         lifecycleScope.launch(Dispatchers.IO) {
             try {
-                val favMeals = favDao.getFavs()
+                val favMeals = favDao.getAll()
                 withContext(Dispatchers.Main) {
                     recyclerView.layoutManager = LinearLayoutManager(requireActivity())
                     recyclerView.adapter = FavAdapter(favMeals)

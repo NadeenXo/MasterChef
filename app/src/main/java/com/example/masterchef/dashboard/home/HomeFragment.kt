@@ -2,27 +2,35 @@ package com.example.masterchef.dashboard.home
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.masterchef.R
-import com.example.masterchef.dashboard.MealsAdapter
+import com.example.masterchef.dashboard.home.model.category.Category
+import com.example.masterchef.dashboard.home.view.CategoriesAdapter
+import com.example.masterchef.dashboard.home.view.CategoryListener
+import com.example.masterchef.dashboard.meal.MealFragment
 import com.example.masterchef.network.APIClient
+import com.example.masterchef.network.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class HomeFragment : Fragment() {
-    lateinit var recyclerView: RecyclerView
-    lateinit var name: TextView
-    lateinit var img: ImageView
+
+class HomeFragment : Fragment(), CategoryListener {
+    private lateinit var categoryName: String
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var name: TextView
+    private lateinit var img: ImageView
+    private lateinit var mealCard: View
+    private lateinit var service: ApiService
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,26 +38,13 @@ class HomeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        name = view.findViewById(R.id.tv_meal_name)
-        img = view.findViewById(R.id.iv_meal)
-        recyclerView = view.findViewById(R.id.rv)
+        name = view.findViewById(R.id.tv_meal_name_card)
+        img = view.findViewById(R.id.iv_meal_card)
+        recyclerView = view.findViewById(R.id.rv_home)
+        mealCard = view.findViewById(R.id.meal_card_home)
 
 
-        val service = APIClient.getInstance()
-//        service.getMeals().enqueue(object : Callback<MealsModel?> {
-//            override fun onResponse(call: Call<MealsModel?>?, response: Response<MealsModel?>?) {
-//                Log.i("Meals", "onResponse: ${response?.body()}")
-//                val meals = response?.body()?.meals
-//                name.text = meals?.get(0)?.strMeal ?: " "
-//                if (isAdded) {
-//                    Glide.with(this@HomeFragment).load(meals?.get(0)?.strMealThumb).into(img)
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<MealsModel?>?, t: Throwable?) {
-//                Log.i("Meals", "onFailure: ${t?.cause}")
-//            }
-//        })
+        service = APIClient.getInstance()
 
         lifecycleScope.launch(Dispatchers.IO) {
             try {
@@ -60,7 +55,8 @@ class HomeFragment : Fragment() {
                         if (!meals.isNullOrEmpty()) {
                             name.text = meals[0].strMeal
                             if (isAdded) {
-                                Glide.with(this@HomeFragment).load(meals[0].strMealThumb).into(img)
+                                Glide.with(this@HomeFragment).load(meals[0].strMealThumb)
+                                    .centerCrop().error(R.drawable.img_onboarding).into(img)
                             }
                         }
                     }
@@ -74,12 +70,14 @@ class HomeFragment : Fragment() {
 
         lifecycleScope.launch(Dispatchers.IO) {
             try {
-                val categoriesResponse = service.getCategories()
+                val categoriesResponse = service.getMealCategories()
                 if (categoriesResponse.isSuccessful) {
-                    val categories = categoriesResponse.body()?.meals
+                    val categories = categoriesResponse.body()?.categories
                     withContext(Dispatchers.Main) {
-                        recyclerView.layoutManager = LinearLayoutManager(requireActivity())
-                        recyclerView.adapter = categories?.let { MealsAdapter(it) }
+                        recyclerView.layoutManager =
+                            GridLayoutManager(requireActivity(), 2, RecyclerView.VERTICAL, false)
+                        recyclerView.adapter =
+                            categories?.let { CategoriesAdapter(it, this@HomeFragment) }
                     }
                 } else {
                     Log.e("HomeFragment", "Error: ${categoriesResponse.code()}")
@@ -89,29 +87,20 @@ class HomeFragment : Fragment() {
             }
         }
 
-//        service.getCategories().enqueue(object : Callback<Categories?> {
-//            override fun onResponse(call: Call<Categories?>?, response: Response<Categories?>?) {
-//                Log.i("Categories", "onResponse: ${response?.body()}")
-//                val categories = response?.body()?.meals
-//
-//                recyclerView.layoutManager = LinearLayoutManager(activity)
-//                recyclerView.adapter = categories?.let { MealsAdapter(it) }
-//            }
-//
-//            override fun onFailure(call: Call<Categories?>?, t: Throwable?) {
-//                Log.i("Categories", "onFailure: ${t?.cause}")
-//            }
-//        })
-
-//        lifecycleScope.launch(Dispatchers.IO) {
-//            val response = service.getCategories()
-//            val categories = response.body()?.meals ?: emptyList()
-//            withContext(Dispatchers.Main) {
-//                recyclerView.layoutManager = LinearLayoutManager(activity)
-//                recyclerView.adapter = MealsAdapter(categories)
-//            }
-//        }
-//    }
         return view
     }
+
+    override fun onClick(category: Category) {
+        categoryName = category.strCategory
+        navigateToMealFragment(categoryName)
+    }
+
+    private fun navigateToMealFragment(categoryName: String) {
+        val fragment = MealFragment.newInstance(categoryName)
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.nav_host_fragment_dashboard, fragment)
+            .addToBackStack("MealFragment")
+            .commit()
+    }
+
 }

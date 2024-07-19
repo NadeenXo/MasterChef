@@ -8,17 +8,16 @@ import androidx.room.Query
 
 @Dao
 interface FavDAO {
-    @Query("SELECT * FROM favs WHERE idMeal = :idMeal")
-    suspend fun getFavByName(idMeal: String): List<fav>
+    @Query("SELECT * FROM FavouriteTable WHERE idMeal = :idMeal")
+    suspend fun getFavById(idMeal: String): List<FavouriteTable>
 
-    @Query("SELECT * FROM favs")
-    suspend fun getFavs(): List<fav>
-
+    @Query("SELECT * FROM FavouriteTable")
+    suspend fun getAll(): List<FavouriteTable>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(vararg favArg: fav): List<Long>
+    suspend fun insert(vararg favArg: FavouriteTable): List<Long>
 
     @Delete
-    suspend fun delete(favObj: fav): Int
+    suspend fun delete(favObj: FavouriteTable): Int
 
 }

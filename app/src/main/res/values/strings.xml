@@ -12,14 +12,33 @@
     <string name="skip_action">Skip</string>
     <string name="cancel_msg">Cancel</string>
     <!--    menu-->
-    <string name="for_you_msg">FOR YOU</string>
-    <string name="search_msg">SEARCH</string>
+    <string name="for_you_msg">For You</string>
+    <string name="search_msg">Search</string>
     <string name="add_msg">ADD</string>
     <string name="calender_msg">CALENDER</string>
     <string name="favourite_msg">Favourite</string>
-
-    <!--  shared prefs   -->
-    <!--    <string name="preference_file_key">com.example.masterchef.onboarding.loggedin</string>-->
-    <!--    <string name="logged">com.example.masterchef.onboarding.logged</string>-->
-    <!--    &#45;&#45;   -->
+    <string name="country_msg">Country</string>
+    <string name="choose_country_msg">Choose Country To Display Its Popular Meals:</string>
+    <string name="meal_of_the_day_msg">Meal Of The Day</string>
+    <string name="categories_msg">Categories</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="country_hint">Country:</string>
+    <string name="ingredients_hint">Ingredients:</string>
+    <string name="steps_hint">Steps:</string>
+    <string name="add_action">Add To Favourite</string>
+    <string name="remove_action">Remove From Favourite</string>
+    <string name="calender_action">Add To Calender</string>
+    <string name="confirm_password_hint">Confirm Password</string>
+    <string name="signup_action">signup</string>
+    <string name="cancel_action">CANCEL</string>
+    <string name="select_category_search_msg">Select Category To Search With:</string>
+    <string name="youtube_action">Youtube</string>
+    <string name="settings_action">Settings</string>
+    <string name="share_action">Share</string>
+    <string name="logout_action">log out</string>
+    <string name="plan">Plan</string>
+    <string name="category_hint">Category:</string>
+    <string name="plan_action">ADD TO PLAN</string>
+    <string name="american_country_help">American</string>
 </resources>
