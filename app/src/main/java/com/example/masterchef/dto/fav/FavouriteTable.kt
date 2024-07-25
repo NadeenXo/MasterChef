@@ -1,4 +1,4 @@
-package com.example.masterchef.dto
+package com.example.masterchef.dto.fav
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

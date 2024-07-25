@@ -17,9 +17,9 @@ import com.bumptech.glide.Glide
 import com.example.masterchef.R
 import com.example.masterchef.dashboard.meal.model.MealDetails
 import com.example.masterchef.dashboard.meal.view.IngredientsAdapter
-import com.example.masterchef.dto.FavDAO
-import com.example.masterchef.dto.FavDataBase
-import com.example.masterchef.dto.FavouriteTable
+import com.example.masterchef.dto.fav.FavDAO
+import com.example.masterchef.dto.fav.FavDataBase
+import com.example.masterchef.dto.fav.FavouriteTable
 import com.example.masterchef.network.APIClient
 import com.example.masterchef.network.ApiService
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer

@@ -10,10 +10,9 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.masterchef.R
-import com.example.masterchef.dashboard.country.CountryFragment
 import com.example.masterchef.dashboard.meal.model.Meals
-import com.example.masterchef.dto.FavDataBase
-import com.example.masterchef.dto.FavouriteTable
+import com.example.masterchef.dto.fav.FavDataBase
+import com.example.masterchef.dto.fav.FavouriteTable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -8,8 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.masterchef.R
-import com.example.masterchef.dto.FavDataBase
-import com.example.masterchef.dto.FavouriteTable
+import com.example.masterchef.dto.fav.FavDataBase
+import com.example.masterchef.dto.fav.FavouriteTable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

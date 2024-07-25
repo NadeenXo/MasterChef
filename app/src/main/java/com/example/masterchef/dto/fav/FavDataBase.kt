@@ -1,4 +1,4 @@
-package com.example.masterchef.dto
+package com.example.masterchef.dto.fav
 
 import android.content.Context
 import androidx.room.Database

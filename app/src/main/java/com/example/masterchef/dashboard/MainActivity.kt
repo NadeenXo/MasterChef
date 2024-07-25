@@ -7,10 +7,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.masterchef.R
-import com.example.masterchef.dashboard.add.AddFragment
 import com.example.masterchef.dashboard.country.CountryFragment
 import com.example.masterchef.dashboard.favorite.FavouriteFragment
 import com.example.masterchef.dashboard.home.HomeFragment
+import com.example.masterchef.dashboard.plan.PlanFragment
 import com.example.masterchef.dashboard.search.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> HomeFragment()
                 R.id.country -> CountryFragment()
                 R.id.fav -> FavouriteFragment()
-                R.id.plan -> AddFragment()
+                R.id.plan -> PlanFragment()
 //                R.id.add -> AddFragment()
 //                R.id.calender -> CalenderFragment()
                 R.id.search -> SearchFragment()

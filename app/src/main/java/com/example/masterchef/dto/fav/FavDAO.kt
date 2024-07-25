@@ -1,4 +1,4 @@
-package com.example.masterchef.dto
+package com.example.masterchef.dto.fav
 
 import androidx.room.Dao
 import androidx.room.Delete

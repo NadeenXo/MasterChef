@@ -15,9 +15,9 @@
     </fragment>
     <fragment
         android:id="@+id/add"
-        android:name="com.example.masterchef.dashboard.add.AddFragment"
+        android:name="com.example.masterchef.dashboard.plan.PlanFragment"
         android:label="Add"
-        tools:layout="@layout/fragment_add" />
+        tools:layout="@layout/fragment_plan" />
     <fragment
         android:id="@+id/calender"
         android:name="com.example.masterchef.dashboard.calender.CalenderFragment"
