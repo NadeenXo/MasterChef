@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.example.masterchef.R
 import com.example.masterchef.dashboard.meal.model.MealDetails
 import com.example.masterchef.dashboard.meal.view.IngredientsAdapter
+import com.example.masterchef.dashboard.plan.AddPlanDiaogFragment
 import com.example.masterchef.dto.fav.FavDAO
 import com.example.masterchef.dto.fav.FavDataBase
 import com.example.masterchef.dto.fav.FavouriteTable
@@ -45,6 +46,8 @@ class MealDetailsFragment : Fragment() {
     private lateinit var planButton: Button
     private lateinit var youtubePlayerView: YouTubePlayerView
     private lateinit var favDao: FavDAO
+    private lateinit var planDialog: AddPlanDiaogFragment
+
 
     companion object {
         private const val ARG_MEAL_ID = "meal_id"
@@ -81,6 +84,7 @@ class MealDetailsFragment : Fragment() {
 
         service = APIClient.getInstance()
         favDao = FavDataBase.getInstance(requireContext()).favDao()
+//        planDialog = AddPlanDiaogFragment(myMeal.strMeal)
 
 
         arguments?.let {
@@ -103,6 +107,9 @@ class MealDetailsFragment : Fragment() {
         addToCalender()
         planButton.setOnClickListener {
             //todo
+//            open plan dialog
+            planDialog.show(requireActivity().supportFragmentManager, planDialog.tag)
+
         }
     }
 
@@ -170,6 +177,8 @@ class MealDetailsFragment : Fragment() {
                         })
 //                        addMealToFav(meal)
                         myMeal = meal
+                        planDialog = AddPlanDiaogFragment(meal.strMeal)
+
                     }
 
                 } else {

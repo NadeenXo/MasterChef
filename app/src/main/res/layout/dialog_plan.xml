@@ -9,7 +9,7 @@
         android:id="@+id/tv_choose_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:text="Choose Day For This Meal In Your Plan"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -17,95 +17,62 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/iv_sat"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/shape_circle"
-        android:text="Sat"
-        app:layout_constraintEnd_toStartOf="@+id/btn_sun"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_choose_day" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_sun"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/shape_circle"
-        android:text="Sun"
-        app:layout_constraintEnd_toStartOf="@+id/btn_mon"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/iv_sat"
-        app:layout_constraintTop_toTopOf="@+id/iv_sat" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_mon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/shape_circle"
-        android:text="Mon"
-        app:layout_constraintEnd_toStartOf="@+id/btn_tue"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_sun"
-        app:layout_constraintTop_toTopOf="@+id/btn_sun" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_tue"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/shape_circle"
-        android:text="Tue"
-        app:layout_constraintEnd_toStartOf="@+id/btn_wed"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_mon"
-        app:layout_constraintTop_toTopOf="@+id/btn_mon" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_wed"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/shape_circle"
-        android:text="Wed"
-        app:layout_constraintEnd_toStartOf="@+id/btn_thu"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_tue"
-        app:layout_constraintTop_toTopOf="@+id/btn_tue" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_thu"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/shape_circle"
-        android:text="Thu"
-        app:layout_constraintEnd_toStartOf="@+id/btn_fri"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_wed"
-        app:layout_constraintTop_toTopOf="@+id/btn_wed" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_fri"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/shape_circle"
-        android:text="Fri"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_thu"
-        app:layout_constraintTop_toTopOf="@+id/btn_wed" />
-
-    <Button
-        android:id="@+id/btn_try_again"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ti_day_lit"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:background="@drawable/shape_card_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_choose_day">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView_day"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_card_blain"
+            android:inputType="none"
+            android:text="Saturday" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ti_meal_lit"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/shape_card_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ti_day_lit">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView_plan"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/shape_card_blain"
+            android:inputType="none"
+            android:text="breakfast" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_save_day"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
         android:text="Save"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_sat" />
+        app:layout_constraintTop_toBottomOf="@+id/ti_meal_lit" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="4dp"
@@ -12,38 +11,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="saturday"
-        app:layout_constraintEnd_toStartOf="@+id/tv_breakfast"
+        app:layout_constraintEnd_toStartOf="@+id/tv_type"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_breakfast"
+        android:id="@+id/tv_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="breakfast"
-        app:layout_constraintEnd_toStartOf="@+id/tv_lunch"
+        app:layout_constraintEnd_toStartOf="@+id/tv_meal_name_plan"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_day"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_lunch"
+        android:id="@+id/tv_meal_name_plan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="lunch"
-        app:layout_constraintEnd_toStartOf="@+id/tv_dinner"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_breakfast"
-        app:layout_constraintTop_toTopOf="@+id/tv_breakfast" />
-
-    <TextView
-        android:id="@+id/tv_dinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="dinner"
+        android:text="@string/meal_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_lunch"
-        app:layout_constraintTop_toTopOf="@+id/tv_lunch" />
+        app:layout_constraintStart_toEndOf="@+id/tv_type"
+        app:layout_constraintTop_toTopOf="@+id/tv_type" />
 </androidx.constraintlayout.widget.ConstraintLayout>

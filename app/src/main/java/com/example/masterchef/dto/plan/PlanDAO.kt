@@ -14,7 +14,7 @@ interface PlanDAO {
     @Query("SELECT * FROM PlanTable")
     suspend fun getAll(): List<PlanTable>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(vararg favArg: PlanTable): List<Long>
 
     @Delete

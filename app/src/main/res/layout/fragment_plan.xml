@@ -9,7 +9,9 @@
         android:id="@+id/tv_day_plan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Week Days"
+        android:text="Week Day"
+        android:textColor="@color/dark_blue"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/tv_breakfast_plan"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,29 +21,24 @@
         android:id="@+id/tv_breakfast_plan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Breakfast"
-        app:layout_constraintEnd_toStartOf="@+id/tv_lunch_plan"
+        android:text="Meal Type"
+        android:textColor="@color/dark_blue"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tv_meal_name_plan_rv"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_day_plan"
-        app:layout_constraintTop_toTopOf="@+id/tv_lunch_plan" />
+        app:layout_constraintTop_toTopOf="@+id/tv_meal_name_plan_rv" />
 
     <TextView
-        android:id="@+id/tv_lunch_plan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lunch"
-        app:layout_constraintEnd_toStartOf="@+id/tv_dinner_plan"
-        app:layout_constraintStart_toEndOf="@+id/tv_breakfast_plan"
-        app:layout_constraintTop_toTopOf="@+id/tv_dinner_plan" />
-
-    <TextView
-        android:id="@+id/tv_dinner_plan"
+        android:id="@+id/tv_meal_name_plan_rv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Dinner"
+        android:text="Meal Name"
+        android:textColor="@color/dark_blue"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_lunch_plan"
+        app:layout_constraintStart_toEndOf="@+id/tv_breakfast_plan"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -52,6 +49,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_dinner_plan"
+        app:layout_constraintTop_toBottomOf="@+id/tv_meal_name_plan_rv"
         tools:listitem="@layout/item_plan" />
 </androidx.constraintlayout.widget.ConstraintLayout>
