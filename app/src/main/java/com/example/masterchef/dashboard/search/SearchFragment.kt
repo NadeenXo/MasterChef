@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.SearchView
+import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +18,8 @@ import com.example.masterchef.dashboard.meal.view.MealListener
 import com.example.masterchef.network.APIClient
 import com.example.masterchef.network.ApiService
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -25,7 +27,7 @@ class SearchFragment : Fragment(), MealListener {
     private lateinit var rv: RecyclerView
     private lateinit var search: SearchView
     private lateinit var service: ApiService
-    private lateinit var img: ImageView
+    private lateinit var tvHint: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,15 +37,15 @@ class SearchFragment : Fragment(), MealListener {
 
         rv = view.findViewById(R.id.rv_search)
         search = view.findViewById(R.id.searchView)
-        img = view.findViewById(R.id.iv_search_empty)
+        tvHint = view.findViewById(R.id.tv_search_empty)
         service = APIClient.getInstance()
 
         search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()) {
-                    searchWithCategory(query)
-                    searchWithArea(query)
-                    searchWithIngredients(query)
+                    lifecycleScope.launch {
+                        performSearch(query)
+                    }
                 }
                 return true
             }
@@ -60,16 +62,27 @@ class SearchFragment : Fragment(), MealListener {
 
     private fun toggleEmptyView(show: Boolean) {
         if (show) {
-            img.visibility = View.VISIBLE
+            tvHint.visibility = View.VISIBLE
             rv.visibility = View.GONE
         } else {
-            img.visibility = View.GONE
+            tvHint.visibility = View.GONE
             rv.visibility = View.VISIBLE
         }
     }
 
-    private fun searchWithIngredients(ingredientName: String?) {
-        lifecycleScope.launch {
+    private suspend fun performSearch(query: String) {
+        val categoryDeferred = lifecycleScope.async { searchWithCategory(query) }
+        val areaDeferred = lifecycleScope.async { searchWithArea(query) }
+        val ingredientsDeferred = lifecycleScope.async { searchWithIngredients(query) }
+
+        val results = awaitAll(categoryDeferred, areaDeferred, ingredientsDeferred)
+        val isAllEmpty = results.all { it }
+
+        toggleEmptyView(isAllEmpty)
+    }
+
+    private suspend fun searchWithIngredients(ingredientName: String?): Boolean {
+        return withContext(Dispatchers.IO) {
             try {
                 val response = ingredientName?.let { service.getMealByIngredient(it) }
                 if (response != null && response.isSuccessful && response.body() != null) {
@@ -77,21 +90,20 @@ class SearchFragment : Fragment(), MealListener {
                     withContext(Dispatchers.Main) {
                         rv.layoutManager = LinearLayoutManager(context)
                         rv.adapter = MealAdapter(meals, this@SearchFragment)
-                        toggleEmptyView(meals.isEmpty())
                     }
+                    meals.isEmpty()
                 } else {
-                    toggleEmptyView(true)
+                    true
                 }
             } catch (e: Exception) {
-                Log.e("SearchFragment", "Error fetching meals by area", e)
-                toggleEmptyView(true)
+                Log.e("SearchFragment", "Error fetching meals by ingredient", e)
+                true
             }
         }
-
     }
 
-    private fun searchWithArea(countryName: String?) {
-        lifecycleScope.launch {
+    private suspend fun searchWithArea(countryName: String?): Boolean {
+        return withContext(Dispatchers.IO) {
             try {
                 val response = countryName?.let { service.getMealsByArea(it) }
                 if (response != null && response.isSuccessful && response.body() != null) {
@@ -99,20 +111,20 @@ class SearchFragment : Fragment(), MealListener {
                     withContext(Dispatchers.Main) {
                         rv.layoutManager = LinearLayoutManager(context)
                         rv.adapter = MealAdapter(meals, this@SearchFragment)
-                        toggleEmptyView(meals.isEmpty())
                     }
+                    meals.isEmpty()
                 } else {
-                    toggleEmptyView(true)
+                    true
                 }
             } catch (e: Exception) {
                 Log.e("SearchFragment", "Error fetching meals by area", e)
-                toggleEmptyView(true)
+                true
             }
         }
     }
 
-    private fun searchWithCategory(categoryName: String?) {
-        lifecycleScope.launch(Dispatchers.IO) {
+    private suspend fun searchWithCategory(categoryName: String?): Boolean {
+        return withContext(Dispatchers.IO) {
             try {
                 val response = categoryName?.let { service.getMealsByCategory(it) }
                 if (response != null && response.isSuccessful) {
@@ -120,21 +132,18 @@ class SearchFragment : Fragment(), MealListener {
                     withContext(Dispatchers.Main) {
                         rv.layoutManager = LinearLayoutManager(context)
                         rv.adapter = MealAdapter(meals ?: emptyList(), this@SearchFragment)
-                        toggleEmptyView(meals.isNullOrEmpty())
                     }
+                    meals.isNullOrEmpty()
                 } else {
-                    withContext(Dispatchers.Main) {
-                        toggleEmptyView(true)
-                    }
+                    true
                 }
             } catch (e: Exception) {
                 Log.e("SearchFragment", "Error fetching meals by category", e)
-                withContext(Dispatchers.Main) {
-                    toggleEmptyView(true)
-                }
+                true
             }
         }
     }
+
 
     override fun onClick(id: String) {
         navigateToMealDetailsFragment(id)

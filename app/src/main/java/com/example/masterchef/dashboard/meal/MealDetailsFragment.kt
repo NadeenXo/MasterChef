@@ -38,6 +38,7 @@ class MealDetailsFragment : Fragment() {
     private lateinit var nameTextView: TextView
     private lateinit var imageView: ImageView
     private lateinit var countryTextView: TextView
+    private lateinit var categoryTextView: TextView
     private lateinit var ingredientsRecyclerView: RecyclerView
     private lateinit var stepsTextView: TextView
     private lateinit var addButton: Button
@@ -74,6 +75,7 @@ class MealDetailsFragment : Fragment() {
         nameTextView = view.findViewById(R.id.name_tv_meal)
         imageView = view.findViewById(R.id.meal_iv_meal)
         countryTextView = view.findViewById(R.id.country_tv_meal)
+        categoryTextView = view.findViewById(R.id.category_tv_meal)
         ingredientsRecyclerView = view.findViewById(R.id.ingredient_list)
         stepsTextView = view.findViewById(R.id.steps_tv_meal)
         addButton = view.findViewById(R.id.add_btn_meal)
@@ -154,6 +156,7 @@ class MealDetailsFragment : Fragment() {
                             .centerCrop()
                             .into(imageView)
                         countryTextView.text = meal.strArea
+                        categoryTextView.text = meal.strCategory
 
                         val ingredientsWithMeasures = extractIngredients(meal)
                         ingredientsRecyclerView.layoutManager = GridLayoutManager(context, 2)

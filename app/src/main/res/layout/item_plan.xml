@@ -8,9 +8,10 @@
 
     <TextView
         android:id="@+id/tv_day"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="saturday"
+        android:textAlignment="center"
         app:layout_constraintEnd_toStartOf="@+id/tv_type"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,9 +19,10 @@
 
     <TextView
         android:id="@+id/tv_type"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="breakfast"
+        android:textAlignment="center"
         app:layout_constraintEnd_toStartOf="@+id/tv_meal_name_plan"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_day"
@@ -28,9 +30,10 @@
 
     <TextView
         android:id="@+id/tv_meal_name_plan"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/meal_name"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_type"
