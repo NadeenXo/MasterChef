@@ -9,59 +9,47 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.edit
-import com.example.masterchef.R
 import com.example.masterchef.dashboard.Logout
 import com.example.masterchef.dashboard.MainActivity
+import com.example.masterchef.databinding.FragmentLoginBinding
 import com.example.masterchef.onboarding.OnBoardingActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 
 class LoginFragment : Fragment(), Logout {
-    private lateinit var bCancel: Button
-    private lateinit var bLogin: Button
-    private lateinit var etEmail: EditText
-    private lateinit var etPassword: EditText
-    private lateinit var sharedPref: SharedPreferences
 
-    //check whether all the text fields are filled or not.
+    private lateinit var sharedPref: SharedPreferences
+    private lateinit var binding: FragmentLoginBinding
     private var isAllFieldsChecked = false
     private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_login, container, false)
+    ): View {
+        binding = FragmentLoginBinding.inflate(inflater, container, false)
+
         auth = Firebase.auth
-
-        bLogin = view.findViewById(R.id.btn_login)
-        bCancel = view.findViewById(R.id.btn_cancel_login)
-        etEmail = view.findViewById(R.id.et_email_login)
-        etPassword = view.findViewById(R.id.et_password_login)
-
         auth = FirebaseAuth.getInstance()
 
         sharedPref =
             activity?.getSharedPreferences(LoginManager.PREFERENCE_FILE_KEY, Context.MODE_PRIVATE)!!
 
-        bLogin.setOnClickListener {
+        binding.btnLogin.setOnClickListener {
             isAllFieldsChecked = checkAllFields()
             if (isAllFieldsChecked) {
                 // if all fields is true login
                 login()
             }
         }
-        bCancel.setOnClickListener {
+        binding.btnCancelLogin.setOnClickListener {
             requireActivity().finish()
         }
 
-        return view
+        return binding.root
     }
 
     override fun onStart() {
@@ -74,7 +62,7 @@ class LoginFragment : Fragment(), Logout {
     }
 
     private fun login() {
-        auth.signInWithEmailAndPassword(etEmail.text.toString(), etPassword.text.toString())
+        auth.signInWithEmailAndPassword(binding.etEmailLogin.text.toString(), binding.etPasswordLogin.text.toString())
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
@@ -82,7 +70,7 @@ class LoginFragment : Fragment(), Logout {
                     // loggedin
                     sharedPref.edit {
                         putBoolean(LoginManager.PREFERENCE_IS_LOGGED, true)
-                        putString(LoginManager.PREFERENCE_EMAIL, etEmail.text.trim().toString())
+                        putString(LoginManager.PREFERENCE_EMAIL, binding.etEmailLogin.text.trim().toString())
 
                     }
                     startActivity(Intent(activity, MainActivity::class.java))
@@ -101,18 +89,18 @@ class LoginFragment : Fragment(), Logout {
 
     // Function which checks all the text fields when the user clicks on the login button this function is triggered.
     private fun checkAllFields(): Boolean {
-        if (etEmail.length() == 0) {
-            etEmail.error = "Email is required"
+        if (binding.etEmailLogin.length() == 0) {
+            binding.etEmailLogin.error = "Email is required"
             return false
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(etEmail.text.toString()).matches()) {
-            etEmail.error = "Enter a valid email"
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(binding.etEmailLogin.text.toString()).matches()) {
+            binding.etEmailLogin.error = "Enter a valid email"
             return false
         }
-        if (etPassword.length() == 0) {
-            etPassword.error = "Password is required"
+        if (binding.etPasswordLogin.length() == 0) {
+            binding.etPasswordLogin.error = "Password is required"
             return false
-        } else if (etPassword.length() < 8) {
-            etPassword.error = "Password must be a minimum of 8 characters"
+        } else if (binding.etPasswordLogin.length() < 8) {
+            binding.etPasswordLogin.error = "Password must be a minimum of 8 characters"
             return false
         }
         return true

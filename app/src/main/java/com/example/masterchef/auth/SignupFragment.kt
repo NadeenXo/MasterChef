@@ -6,55 +6,42 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.masterchef.R
+import com.example.masterchef.databinding.FragmentSignupBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class SignupFragment : Fragment() {
-    private lateinit var bCancel: Button
-    private lateinit var bSignup: Button
-    private lateinit var etEmail: EditText
-    private lateinit var etPassword: EditText
-    private lateinit var etConfirmPassword: EditText
-
-    //check whether all the text fields are filled or not.
+    private lateinit var binding: FragmentSignupBinding
     private var isAllFieldsChecked = false
     private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_signup, container, false)
-
-        bSignup = view.findViewById(R.id.btn_signup)
-        bCancel = view.findViewById(R.id.btn_cancel_signup)
-        etEmail = view.findViewById(R.id.et_email_signup)
-        etPassword = view.findViewById(R.id.et_password_signup)
-        etConfirmPassword = view.findViewById(R.id.et_confirm_password_signup)
+    ): View {
+        binding = FragmentSignupBinding.inflate(inflater, container, false)
 
         auth = FirebaseAuth.getInstance()
 
-        bSignup.setOnClickListener {
+        binding.btnSignup.setOnClickListener {
             isAllFieldsChecked = checkAllFields()
             if (isAllFieldsChecked) {
                 // if all fields is true signup
                 signUp()
             }
         }
-        bCancel.setOnClickListener {
+        binding.btnCancelSignup.setOnClickListener {
             requireActivity().finish()
         }
-        return view
+        return binding.root
     }
 
     private fun signUp() {
         auth.createUserWithEmailAndPassword(
-            etEmail.text.toString(),
-            etPassword.text.toString()
+            binding.etEmailSignup.text.toString(),
+            binding.etPasswordSignup.text.toString()
         ).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 // Sign in success, update UI with the signed-in user's information
@@ -83,25 +70,25 @@ class SignupFragment : Fragment() {
     // Function which checks all the text fields
     // When the user clicks on the SIGNUP button this function is triggered.
     private fun checkAllFields(): Boolean {
-        if (etEmail.length() == 0) {
-            etEmail.error = "Email is required"
+        if ( binding.etEmailSignup.length() == 0) {
+             binding.etEmailSignup.error = "Email is required"
             return false
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(etEmail.text.toString()).matches()) {
-            etEmail.error = "Enter a valid email"
-            return false
-        }
-        if (etPassword.length() == 0) {
-            etPassword.error = "Password is required"
-            return false
-        } else if (etPassword.length() < 8) {
-            etPassword.error = "Password must be a minimum of 8 characters"
+        } else if (!Patterns.EMAIL_ADDRESS.matcher( binding.etEmailSignup.text.toString()).matches()) {
+             binding.etEmailSignup.error = "Enter a valid email"
             return false
         }
-        if (etConfirmPassword.length() == 0) {
-            etConfirmPassword.error = "Confirm Password is required"
+        if (binding.etPasswordSignup.length() == 0) {
+            binding.etPasswordSignup.error = "Password is required"
             return false
-        } else if (etPassword.text.toString() != etConfirmPassword.text.toString()) {
-            etConfirmPassword.error = "Passwords do not match"
+        } else if (binding.etPasswordSignup.length() < 8) {
+            binding.etPasswordSignup.error = "Password must be a minimum of 8 characters"
+            return false
+        }
+        if (binding.etConfirmPasswordSignup.length() == 0) {
+            binding.etConfirmPasswordSignup.error = "Confirm Password is required"
+            return false
+        } else if (binding.etPasswordSignup.text.toString() != binding.etConfirmPasswordSignup.text.toString()) {
+            binding.etConfirmPasswordSignup.error = "Passwords do not match"
             return false
         }
         return true

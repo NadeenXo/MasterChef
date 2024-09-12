@@ -5,12 +5,16 @@ import android.os.Bundle
 import androidx.activity.addCallback
 import androidx.navigation.fragment.NavHostFragment
 import com.example.masterchef.R
+import com.example.masterchef.databinding.ActivityAuthBinding
 import com.example.masterchef.onboarding.OnBoardingActivity
 
 class AuthActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityAuthBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_auth)
+        binding = ActivityAuthBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         // Use findNavController with the NavHostFragment
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_auth) as NavHostFragment
