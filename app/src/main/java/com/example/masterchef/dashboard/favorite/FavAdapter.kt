@@ -15,7 +15,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class FavAdapter(var data: List<FavouriteTable>) :
+class FavAdapter(var data: List<FavouriteTable>, private val listener: FavMealListener) :
     RecyclerView.Adapter<FavAdapter.MyViewHolder>() {
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val img: ImageView = itemView.findViewById(R.id.iv_meal_fav_item)
@@ -33,22 +33,27 @@ class FavAdapter(var data: List<FavouriteTable>) :
         return data.size
     }
 
+    fun updateData(newData: List<FavouriteTable>) {
+        data = newData
+        notifyDataSetChanged()
+    }
+
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val favDao = FavDataBase.getInstance(holder.itemView.context).favDao()
+//        val favDao = FavDataBase.getInstance(holder.itemView.context).favDao()
 
         holder.name.text = data[position].strMeal
-
-        //todo:edit data class
         Glide.with(holder.itemView.context).load(data[position].strMealThumb).into(holder.img)
-        //todo: edit favDao
+
         holder.del.setOnClickListener {
-            GlobalScope.launch {
-                favDao.delete(data[position])
-                data = favDao.getAll()
-                withContext(Dispatchers.Main) {
-                    notifyDataSetChanged()
-                }
-            }
+//in viewmodel
+//            GlobalScope.launch {
+//                favDao.delete(data[position])
+//                data = favDao.getAll()
+//                withContext(Dispatchers.Main) {
+//                    notifyDataSetChanged()
+//                }
+//            }
+            listener.onClickDeleteMeal(data[position])
         }
     }
 }
