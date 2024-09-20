@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.core.view.WindowCompat
@@ -13,6 +11,8 @@ import com.example.masterchef.R
 import com.example.masterchef.auth.AuthActivity
 import com.example.masterchef.auth.LoginManager
 import com.example.masterchef.dashboard.MainActivity
+import com.example.masterchef.databinding.ActivityOnBoardingBinding
+import com.example.masterchef.onboarding.OnBoardingActivity.Constants.DESTINATION_FRAGMENT
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -29,35 +29,40 @@ class OnBoardingActivity : AppCompatActivity() {
         const val RC_SIGN_IN = 9001
     }
 
-    private lateinit var login: TextView
-    private lateinit var skip: TextView
-    private lateinit var signup: Button
-    private lateinit var signupGoogle: Button
+    private lateinit var binding : ActivityOnBoardingBinding
+
+//    private lateinit var login: TextView
+//    private lateinit var skip: TextView
+//    private lateinit var signup: Button
+//    private lateinit var signupGoogle: Button
     private lateinit var sharedPref: SharedPreferences
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_on_boarding)
-        login = findViewById(R.id.tv_login)
-        skip = findViewById(R.id.tv_skip)
-        signup = findViewById(R.id.btn_signup_onboarding)
-        signupGoogle = findViewById(R.id.btn_google)
+        binding = ActivityOnBoardingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+//        setContentView(R.layout.activity_on_boarding)
+//        login = findViewById(R.id.tv_login)
+//        skip = findViewById(R.id.tv_skip)
+//        signup = findViewById(R.id.btn_signup_onboarding)
+//        signupGoogle = findViewById(R.id.btn_google)
 
         //to make the edge to edge screen
         WindowCompat.setDecorFitsSystemWindows(window, false)
         sharedPref =
             this.getSharedPreferences(LoginManager.PREFERENCE_FILE_KEY, Context.MODE_PRIVATE)
 
-        login.setOnClickListener {
+        binding.tvLogin.setOnClickListener {
             startLoginFragment()
         }
 
-        signup.setOnClickListener {
+        binding.btnSignupOnboarding.setOnClickListener {
             startSignupFragment()
         }
-        skip.setOnClickListener {
+
+        binding.tvSkip.setOnClickListener {
             sharedPref.edit {
                 putBoolean(LoginManager.PREFERENCE_IS_LOGGED, false)
             }

@@ -12,18 +12,15 @@ import com.example.masterchef.dashboard.favorite.FavouriteFragment
 import com.example.masterchef.dashboard.home.HomeFragment
 import com.example.masterchef.dashboard.plan.PlanFragment
 import com.example.masterchef.dashboard.search.SearchFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
-
+import com.example.masterchef.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     private lateinit var logout: Logout
-    private lateinit var navView: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-//        WindowCompat.setDecorFitsSystemWindows(window, false)
-
-        navView = findViewById(R.id.bottom_nav)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // Initialize with HomeFragment if savedInstanceState is null
         if (savedInstanceState == null) {
@@ -31,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Set listener for BottomNavigationView
-        navView.setOnItemSelectedListener { item ->
+        binding.bottomNav.setOnItemSelectedListener { item ->
             val fragment = when (item.itemId) {
                 R.id.home -> HomeFragment()
                 R.id.country -> CountryFragment()
@@ -78,7 +75,6 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.nav_host_fragment_dashboard, fragment)
             .commit()
     }
-
 }
 
 interface Logout {
